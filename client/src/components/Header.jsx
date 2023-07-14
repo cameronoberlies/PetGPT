@@ -200,8 +200,8 @@ const Header = () => {
                   My Profile
                 </Button>
                 <Button
-                  as={RouterLink}
-                  to="/portfolio"
+                //   as={RouterLink}
+                //   to="/"
                   bg={bg}
                   color="gray.500"
                   display="inline-flex"
