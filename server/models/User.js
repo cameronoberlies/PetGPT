@@ -30,6 +30,12 @@ const userSchema = new Schema({
 
     }
 },
+favorites: [
+    {
+      type: String,
+      trim: true,
+    },
+  ],
 
 });
 

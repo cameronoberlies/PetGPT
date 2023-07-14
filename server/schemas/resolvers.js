@@ -39,12 +39,12 @@ const resolvers = {
             return { user }; //{ token, user }, will need to add this once we have auth;
         },
 
-        addSkill: async (parent, { userId, skill }, context) => {
+        addSkill: async (parent, { userId, favorite }, context) => {
             if(context.user) {
                 return User.findOneAndUpdate(
                     { _id: userId },
                     {
-                        $addToSet: { skills: skill },
+                        $addToSet: { favorites: favorite },
                     },
                     {
                         new: true,
@@ -65,7 +65,7 @@ const resolvers = {
             if(context.user) {
                 return User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $pull: { skills: skill } },
+                    { $pull: { favorites: favorite } },
                     { new: true }
                 )
             }
