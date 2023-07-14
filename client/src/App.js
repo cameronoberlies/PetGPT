@@ -3,14 +3,16 @@ import "./App.css";
 import Main from './pages/Main';
 import Breed from './pages/Breed';
 import Profile from './pages/Profile';
-import NavBar from './components/NavBar';
+import Header from "./components/Header";
+
+
 
 
 function App () {
     return (
         <>
         <BrowserRouter>
-        <NavBar/>
+        <Header/>
         <Routes>
             <Route path="/" element={<Main/>} />
             <Route path ="/breed" element={<Breed/>} />
