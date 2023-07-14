@@ -7,7 +7,7 @@ const typeDefs = gql`
         email: String
         password: String
         zipCode: Int
-        skills: [String] !
+        favorites: [String] !
     }
 
     #type Auth {
@@ -18,7 +18,7 @@ const typeDefs = gql`
 
     type Query {
         users: [User] !
-        user(userId: ID!): User
+        user(userId: ID): User
         me: User
     }
 
