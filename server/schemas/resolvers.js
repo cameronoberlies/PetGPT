@@ -39,7 +39,7 @@ const resolvers = {
             return { user }; //{ token, user }, will need to add this once we have auth;
         },
 
-        addSkill: async (parent, { userId, favorite }, context) => {
+        addFavorite: async (parent, { userId, favorite }, context) => {
             if(context.user) {
                 return User.findOneAndUpdate(
                     { _id: userId },
@@ -55,13 +55,13 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
         },
 
-        removeProfile: async (parent, args, context) => {
+        removeUser: async (parent, args, context) => {
             if(context.user) {
                 return User.findOneAndDelete({ _id: context.user._id });
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-        removeSkill: async (parent, { skill }, context) => {
+        removeFavorite: async (parent, { favorite }, context) => {
             if(context.user) {
                 return User.findOneAndUpdate(
                     { _id: context.user._id },

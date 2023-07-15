@@ -7,18 +7,18 @@ const typeDefs = gql`
         email: String
         password: String
         zipCode: Int
-        skills: [String] !
+        favorites: [String] !
     }
 
     #type Auth {
-        #token: ID!
-       # user: User
+    #   token: ID!
+    #   user: User
     #}
     #remember to add this back in once we have auth;
 
     type Query {
         users: [User] !
-        user(userId: ID!): User
+        user(userId: ID): User
         me: User
     }
 
