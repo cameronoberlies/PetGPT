@@ -11,8 +11,8 @@ const typeDefs = gql`
     }
 
     #type Auth {
-        #token: ID!
-       # user: User
+    #   token: ID!
+    #   user: User
     #}
     #remember to add this back in once we have auth;
 
