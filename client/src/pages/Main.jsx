@@ -77,7 +77,7 @@ const Main = () => {
             Discover your ideal dog breed match by taking our interactive quiz!
           </chakra.p>
           <Flex justifyContent="center" my={10}>
-          <Link to="/test">
+          <Link to="/login">
             <Button colorScheme="blue">Get Started!</Button>
           </Link>
         </Flex>
