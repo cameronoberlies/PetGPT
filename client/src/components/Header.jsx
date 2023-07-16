@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import {
   chakra,
   Link,
@@ -36,6 +36,12 @@ const Header = () => {
   const myRef = useRef(null);
   const [y, setY] = React.useState(0);
   const height = myRef.current ? myRef.current.getBoundingClientRect() : 0;
+  const location = useLocation();
+  const activeColor = useColorModeValue("white", "white");
+  const inactiveColor = useColorModeValue("gray.500", "gray.200");
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
 
 //   const { scrollY } = useViewportScroll();
 //   React.useEffect(() => {
@@ -147,14 +153,14 @@ const Header = () => {
               </Link>
             </Flex>
             <Flex>
-              <HStack spacing="5" display={{ base: "none", md: "flex" }}>
+              <HStack spacing="5" display={{ base: "none", md: "flex" }} >
                 <Popover>
                   <PopoverTrigger>
                     <Button
                       as={RouterLink}
                       to="/"
-                      bg={bg}
-                      color="gray.500"
+                      bg={isActive("/") ? activeColor : "transparent"}
+                      color={isActive("/") ? "black" : inactiveColor}
                       display="inline-flex"
                       alignItems="center"
                       fontSize="md"
@@ -175,9 +181,22 @@ const Header = () => {
                 </Popover>
                 <Button
                   as={RouterLink}
+                  to="/test"
+                  bg={isActive("/test") ? activeColor : "transparent"}
+                  color={isActive("/test") ? "black" : inactiveColor}
+                  display="inline-flex"
+                  alignItems="center"
+                  fontSize="md"
+                  _hover={{ color: cl }}
+                  _focus={{ boxShadow: "none" }}
+                >
+                 Test
+                </Button>
+                <Button
+                  as={RouterLink}
                   to="/breed"
-                  bg={bg}
-                  color="gray.500"
+                  bg={isActive("/breed") ? activeColor : "transparent"}
+                  color={isActive("/breed") ? "black" : inactiveColor}
                   display="inline-flex"
                   alignItems="center"
                   fontSize="md"
@@ -189,8 +208,8 @@ const Header = () => {
                 <Button
                   as={RouterLink}
                   to="/profile"
-                  bg={bg}
-                  color="gray.500"
+                  bg={isActive("/profile") ? activeColor : "transparent"}
+                  color={isActive("/profile") ? "black" : inactiveColor}
                   display="inline-flex"
                   alignItems="center"
                   fontSize="md"
@@ -199,19 +218,7 @@ const Header = () => {
                 >
                   My Profile
                 </Button>
-                <Button
-                //   as={RouterLink}
-                //   to="/"
-                  bg={bg}
-                  color="gray.500"
-                  display="inline-flex"
-                  alignItems="center"
-                  fontSize="md"
-                  _hover={{ color: cl }}
-                  _focus={{ boxShadow: "none" }}
-                >
-                  Text here
-                </Button>
+              
               </HStack>
             </Flex>
             <Flex justify="flex-end" align="center" color="gray.400">
