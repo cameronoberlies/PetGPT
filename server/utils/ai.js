@@ -1,22 +1,31 @@
-import { Configuration, OpenAIApi } from "openai";
+const { Configuration, OpenAIApi } = require('openai');
+require('dotenv').config();
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_KEY,
 });
+
+const testprompt = {
+    lifestyle : "energetic",
+    home: "apartment",
+    household: "1"
+}
+
 const openai = new OpenAIApi(configuration) 
 async function chat(prompt) {
+    let message = [{role: "user", content: `please give me 3 recommendations for a dog breed based on a ${testprompt.lifestyle} person living in a ${testprompt.home} with ${testprompt.household} people.`}]
     let awnser;
     //console.log("prompt recived")
     try {
         const response = await openai.createChatCompletion({
             model: 'gpt-3.5-turbo',
-            messages: prompt,
+            messages: message,
         });
         awnser = response.data.choices[0].message.content;
     } catch (error){
         // console.log (error)
         awnser = "Error: " + error.response.data.error.message;
     }
-    // console.log(awnser)
+    console.log(awnser)
     return awnser;
     
 }
@@ -37,7 +46,6 @@ async function image (prompt) {
     return awnser;
 }
 
-const _chat = chat;
-export { _chat as chat };
-const _image = image;
-export { _image as image };
+chat(testprompt)
+
+exports.chat = chat;
