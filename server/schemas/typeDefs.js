@@ -7,7 +7,7 @@ const typeDefs = gql`
         email: String
         password: String
         zipcode: Int
-        favorites: [String] !
+        favorites: [String] 
     }
 
     type Auth {
