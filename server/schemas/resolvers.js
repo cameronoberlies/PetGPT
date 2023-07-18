@@ -1,6 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
 const User = require('../models/User');
-//const { signToken } = require('../utils/auth');
+const { signToken } = require('../utils/auth');
 
 
 const resolvers = {
@@ -21,10 +21,10 @@ const resolvers = {
     },
 
     Mutation: {
-        addUser: async (parent, { name, email, password, zipCode }) => {
-            const user = await User.create({ name, email, password, zipCode });
-            //const token = signToken(user);
-            return { user }; //{ token, user }, will need to add this once we have auth;
+        addUser: async (parent, { username, email, password, zipcode }) => {
+            const user = await User.create({ username, email, password, zipcode });
+            const token = signToken(user);
+            return { token, user }; //{ token, user }, will need to add this once we have auth;
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
@@ -35,8 +35,8 @@ const resolvers = {
             if(!correctPw) {
                 throw new AuthenticationError('Incorrect password!');
             }
-            //const token = signToken(user);
-            return { user }; //{ token, user }, will need to add this once we have auth;
+            const token = signToken(user);
+            return { token, user }; //{ token, user }, will need to add this once we have auth;
         },
 
         addFavorite: async (parent, { userId, favorite }, context) => {
