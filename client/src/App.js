@@ -1,32 +1,58 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Main from './pages/Main';
-import Breed from './pages/Breed';
-import Profile from './pages/Profile';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from "@apollo/client";
+import { setContext } from '@apollo/client/link/context';
+import Main from "./pages/Main";
+import Breed from "./pages/Breed";
+import Profile from "./pages/Profile";
 import Header from "./components/Header";
 import Test from "./pages/Test";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 
+const httpLink = createHttpLink({
+  uri: "/graphql",
+});
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem("id_token");
 
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
 
+const client = new ApolloClient({
+  // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
-function App () {
-    return (
-        <>
-        <BrowserRouter>
-        <Header/>
+function App() {
+  return (
+    <>
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <Header />
         <Routes>
-            <Route path="/" element={<Main/>} />
-            <Route path="/signup" element={<Signup/>} />
-            <Route path="/login" element={<Login/>} />
-            <Route path ='/test' element={<Test/>} />
-            <Route path ="/breed" element={<Breed/>} />
-            <Route path ="/profile" element={<Profile/>} />
+          <Route path="/" element={<Main />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/test" element={<Test />} />
+          <Route path="/breed" element={<Breed />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
-        </BrowserRouter>
-        </>
-    );
+      </BrowserRouter>
+      </ApolloProvider>
+    </>
+  );
 }
 
 export default App;

@@ -1,6 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../utils/mutations";
+
+import Auth from "../utils/auth";
 
 const Signup = () => {
+  const [formState, setFormState] = useState({
+    username: "",
+    email: "",
+    password: "",
+    zipcode: "",
+  });
+
+  const [addUser, { error, data }] = useMutation(ADD_USER);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+
+    try {
+      const { data } = await addUser({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.addUser.token);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <>
       <section className="">
@@ -27,23 +66,64 @@ const Signup = () => {
               <div className="col-lg-6 mb-5 mb-lg-0">
                 <div className="card">
                   <div className="card-body py-5 px-md-5">
-                    <form>
-                      {/* 2 column grid layout with text inputs for the first and last names */}
-                      <div className="row">
-                        <div className="col-md-6 mb-4">
-                          <div className="form-outline">
-                            <input
-                              type="text"
-                              id="form3Example1"
-                              className="form-control"
-                            />
-                            <label
-                              className="form-label"
-                              htmlFor="form3Example1"
-                            >
-                              First name
-                            </label>
+                    {data ? (
+                      <p>
+                        Success! You may now{" "}
+                        <Link to="/test">begin the test!</Link>
+                      </p>
+                    ) : (
+                      <form onSubmit={handleFormSubmit}>
+                        {/* 2 column grid layout with text inputs for the first and last names */}
+                        <div className="row">
+                          <div className="col-md-6 mb-4">
+                            <div className="form-outline">
+                              <input
+                                type="text"
+                                id="form3Example1"
+                                className="form-control"
+                                value={formState.username}
+                                onChange={handleChange}
+                                name="username"
+                              />
+                              <label
+                                className="form-label"
+                                htmlFor="form3Example1"
+                              >
+                                Username
+                              </label>
+                            </div>
                           </div>
+                        </div>
+
+                        {/* Email input */}
+                        <div className="form-outline mb-4">
+                          <input
+                            type="email"
+                            id="form3Example3"
+                            className="form-control"
+                            value={formState.email}
+                            onChange={handleChange}
+                            name="email"
+                          />
+                          <label className="form-label" htmlFor="form3Example3">
+                            Email address
+                          </label>
+                        </div>
+
+                        {/* Password input */}
+                        <div className="form-outline mb-4">
+                          <input
+                            type="password"
+                            id="form3Example4"
+                            className="form-control"
+                            placeholder="********"
+                            value={formState.password}
+                            onChange={handleChange}
+                            name="password"
+                          />
+                          <label className="form-label" htmlFor="form3Example4">
+                            Password
+                          </label>
                         </div>
                         <div className="col-md-6 mb-4">
                           <div className="form-outline">
@@ -51,98 +131,34 @@ const Signup = () => {
                               type="text"
                               id="form3Example2"
                               className="form-control"
+                              value={formState.zipcode}
+                              onChange={handleChange}
+                              name="zipcode"
                             />
                             <label
                               className="form-label"
                               htmlFor="form3Example2"
                             >
-                              Last name
+                              Zip code
                             </label>
                           </div>
                         </div>
-                      </div>
-
-                      {/* Email input */}
-                      <div className="form-outline mb-4">
-                        <input
-                          type="email"
-                          id="form3Example3"
-                          className="form-control"
-                        />
-                        <label className="form-label" htmlFor="form3Example3">
-                          Email address
-                        </label>
-                      </div>
-
-                      {/* Password input */}
-                      <div className="form-outline mb-4">
-                        <input
-                          type="password"
-                          id="form3Example4"
-                          className="form-control"
-                        />
-                        <label className="form-label" htmlFor="form3Example4">
-                          Password
-                        </label>
-                      </div>
-
-                      {/* Checkbox */}
-                      <div className="form-check d-flex justify-content-center mb-4">
-                        <input
-                          className="form-check-input me-2"
-                          type="checkbox"
-                          value=""
-                          id="form2Example33"
-                          checked
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="form2Example33"
-                        >
-                          Subscribe to our newsletter
-                        </label>
-                      </div>
-
-                      {/* Submit button */}
-                      <button
-                        type="submit"
-                        className="btn btn-primary btn-block mb-4"
-                      >
-                        Sign up
-                      </button>
-
-                      {/* Register buttons */}
-                      <div className="text-center">
-                        <p>or sign up with:</p>
-                        <button
-                          type="button"
-                          className="btn btn-link btn-floating mx-1"
-                        >
-                          <i className="fab fa-facebook-f"></i>
-                        </button>
 
                         <button
-                          type="button"
-                          className="btn btn-link btn-floating mx-1"
+                          type="submit"
+                          className="btn btn-primary btn-block mb-4"
+                          onClick={handleFormSubmit}
                         >
-                          <i className="fab fa-google"></i>
+                          Sign up
                         </button>
-
-                        <button
-                          type="button"
-                          className="btn btn-link btn-floating mx-1"
-                        >
-                          <i className="fab fa-twitter"></i>
-                        </button>
-
-                        <button
-                          type="button"
-                          className="btn btn-link btn-floating mx-1"
-                        >
-                          <i className="fab fa-github"></i>
-                        </button>
+                      </form>
+                    )}
+                    {error && (
+                      <div className="my-3 p-3 bg-danger text-white">
+                        {error.message}
                       </div>
-                    </form>
+                    )}
+                    
                   </div>
                 </div>
               </div>
