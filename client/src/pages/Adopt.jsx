@@ -9,7 +9,7 @@ const Adopt = () => {
 
   const handleSearch = async () => {
     try {
-      const getOAuth = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJhZ2J5b3JBM0kxWks5Y2RVQXE2dmdsM05VTVVUUlZBSjVnTmZ6ZVI5Vmp4OFdncThobCIsImp0aSI6IjdmNjNkNDczMGYwZDIyNDQwZjlkZjQxNGUxZGUxZTJiYTBmOTNjYzk1OWY0YzA2MDgzM2VlNGVkMDljZTk5NjExOWVhNjNhNDk3YTc3YTM1IiwiaWF0IjoxNjg5NzMxNjIxLCJuYmYiOjE2ODk3MzE2MjEsImV4cCI6MTY4OTczNTIyMSwic3ViIjoiIiwic2NvcGVzIjpbXX0.J0yT88bnE86kkKcSGK1Ac6iNJ1aFunzGFMbiEA6o-_lHrobnuGNnksClmbtUNds-m67mJ0jpdiLUSF2iozJdw6HTemAjgaSO2zw7fgDU2dThFZZlvhVKSA5pPthB7MCgssBQcP8kpZum5YsM7ogBvQ9XgemFz6D0vGow-Zx2yXFUSLFeUx7w6DYQ9JqbhBSCI_ojdqPwVpgIllBt55dgXMyVaN6XMZXbf7n92BBPw_Whfu7agdMOIwJb_fxhatpzct57cQxYaF2872fDXzO8xRnx17N0P0vsw9AvFloUDF9ykIlW4J5qRjP6cWIV0DNh8LHM1jDyWlfcdfqXiauBkg';
+      const getOAuth = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJhZ2J5b3JBM0kxWks5Y2RVQXE2dmdsM05VTVVUUlZBSjVnTmZ6ZVI5Vmp4OFdncThobCIsImp0aSI6ImViNzM5MGFlNzUwM2M5NGQzMWZmMDg5MDNiOGY2YjExMzBhODRmZjczOWFmMWY4ZDkzOWJkMWMxMTc1Y2Y0OWYwOTg4MDQzYTg1NTYyNTU4IiwiaWF0IjoxNjg5NzM4MzIyLCJuYmYiOjE2ODk3MzgzMjIsImV4cCI6MTY4OTc0MTkyMiwic3ViIjoiIiwic2NvcGVzIjpbXX0.xeIaUbNykbQB-E5_T_TxpaZ3Lja3nOfOb3EEmc5GAvA15iTIX1rAd36e9a4KYjKmppYpdZB_8uXuMFvMKjAcZnF8BCJ59MYUXzkyFwm3RfEowcIiMzS12YPv8UWpFV4_3gjxop_n_1Gn-QXOn-X5XttRUBcqnD2-_7WIKuJQRs5ORL2cAis14b6NaUN_EFiBiRwMpj50mFqSZGPnyBFYg612YGigzImE3IzzlcujXV_3lmlBTbZNHFNXfetSdF4vuGhM9atLkOI8EZCcmMGzcj-RvnjMnyKGTlEO1DRV7SeoZuSW-m8SjHvYse7fFe7VzvlAfq7yeSucEpykE8Y2rA';
       const response = await axios.get(
         `https://api.petfinder.com/v2/animals?type=dog&breed=${breed}&location=${zipcode}&distance=100`,
         {
@@ -27,7 +27,7 @@ const Adopt = () => {
 
   return (
     <div>
-      <h2>Search Breeds</h2>
+      <h2>Search Breeds For Adoption</h2>
       <input
         type="text"
         placeholder="Enter breed"
@@ -48,7 +48,7 @@ const Adopt = () => {
             <img src={pet.photos.length > 0 ? pet.photos[0].medium : ''} alt={pet.name} />
             <h3>{pet.name}</h3>
             <p>{pet.description}</p>
-            <a href={pet.url} target="Adoptable dogs" rel="Adoptable dog link to petfinder">
+            <a href={pet.url} target="Petfinder" rel="Adoptable dog link to petfinder">
               Click here to goto petfinder for adoption details
             </a>
           </div>

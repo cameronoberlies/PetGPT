@@ -271,7 +271,7 @@ const Breeds = () => {
 
     return (
         <div>
-            <h1>Dog Breeds List</h1>
+            <h2>Dog Breeds List</h2>
             <p>Click for description</p>
             <ul>
                 {dogBreeds.map((breed, index) => (
