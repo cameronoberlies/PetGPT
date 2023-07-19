@@ -1,47 +1,289 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-// import getOAuth from '../components/petFinderTokenRefresh';
+import React from 'react';
 
 const Breeds = () => {
-  const [breeds, setBreeds] = useState([]);
+    const dogBreeds = [
+        'akbash',
+        'akita',
+        'alaskan-malamute',
+        'american-bulldog',
+        'american-bully',
+        'american-eskimo-dog',
+        'american-foxhound',
+        'american-hairless-terrier',
+        'american-staffordshire-terrier',
+        'american-water-spaniel',
+        'anatolian-shepherd',
+        'appenzell-mountain-dog',
+        'aussiedoodle',
+        'australian-cattle-dog',
+        'australian-kelpie',
+        'australian-shepherd',
+        'australian-terrier',
+        'basenji',
+        'basset-hound',
+        'beagle',
+        'bearded-collie',
+        'beauceron',
+        'bedlington-terrier',
+        'belgian-shepherd',
+        'bernese-mountain-dog',
+        'bichon-frise',
+        'black-and-tan-coonhound',
+        'black-russian-terrier',
+        'bloodhound',
+        'bluetick-coonhound',
+        'boerboel',
+        'bolognese',
+        'border-collie',
+        'border-terrier',
+        'borzoi',
+        'boston-terrier',
+        'bouvier-des-flandres',
+        'boxer',
+        'boykin-spaniel',
+        'briard',
+        'brittany-spaniel',
+        'brussels-griffon',
+        'bull-terrier',
+        'bullmastiff',
+        'cairn-terrier',
+        'canaan-dog',
+        'cane-corso',
+        'cardigan-welsh-corgi',
+        'carolina-dog',
+        'catahoula-leopard-dog',
+        'cattle-dog',
+        'caucasian-sheepdog',
+        'cavachon',
+        'cavalier-king-charles-spaniel',
+        'cavapoo',
+        'chesapeake-bay-retriever',
+        'chihuahua',
+        'chinese-crested-dog',
+        'chinese-foo-dog',
+        'chinook',
+        'chiweenie',
+        'chocolate-labrador-retriever',
+        'chow-chow',
+        'cirneco-dell',
+        'clumber-spaniel',
+        'cockapoo',
+        'cocker-spaniel',
+        'collie',
+        'coonhound',
+        'corgi',
+        'coton-de-tulear',
+        'curly-coated-retriever',
+        'dachshund',
+        'dalmatian',
+        'dandie-dinmont-terrier',
+        'doberman-pinscher',
+        'dogo-argentino',
+        'dogue-de-bordeaux',
+        'dutch-shepherd',
+        'english-bulldog',
+        'english-cocker-spaniel',
+        'english-coonhound',
+        'english-foxhound',
+        'english-pointer',
+        'english-setter',
+        'english-shepherd',
+        'english-springer-spaniel',
+        'english-toy-spaniel',
+        'entlebucher',
+        'eskimo-dog',
+        'feist',
+        'field-spaniel',
+        'fila-brasileiro',
+        'finnish-lapphund',
+        'finnish-spitz',
+        'flat-coated-retriever',
+        'fox-terrier',
+        'foxhound',
+        'french-bulldog',
+        'galgo-spanish-greyhound',
+        'german-pinscher',
+        'german-shepherd-dog',
+        'german-shorthaired-pointer',
+        'german-spitz',
+        'german-wirehaired-pointer',
+        'giant-schnauzer',
+        'glen-of-imaal-terrier',
+        'golden-retriever',
+        'goldendoodle',
+        'gordon-setter',
+        'great-dane',
+        'great-pyrenees',
+        'greater-swiss-mountain-dog',
+        'greyhound',
+        'hamiltonstovare',
+        'harrier',
+        'havanese',
+        'hound',
+        'hovawart',
+        'husky',
+        'ibizan-hound',
+        'icelandic-sheepdog',
+        'illyrian-sheepdog',
+        'irish-setter',
+        'irish-terrier',
+        'irish-water-spaniel',
+        'irish-wolfhound',
+        'italian-greyhound',
+        'jack-russell-terrier',
+        'japanese-chin',
+        'jindo',
+        'kai-dog',
+        'karelian-bear-dog',
+        'keeshond',
+        'kerry-blue-terrier',
+        'kishu',
+        'klee-kai',
+        'komondor',
+        'kuvasz',
+        'kyi-leo',
+        'labradoodle',
+        'labrador-retriever',
+        'lakeland-terrier',
+        'lancashire-heeler',
+        'leonberger',
+        'lhasa-apso',
+        'lowchen',
+        'lurcher',
+        'maltese',
+        'maltipoo',
+        'manchester-terrier',
+        'maremma-sheepdog',
+        'mastiff',
+        'mcnab',
+        'miniature-bull-terrier',
+        'miniature-dachshund',
+        'miniature-pinscher',
+        'miniature-poodle',
+        'miniature-schnauzer',
+        'mixed-breed',
+        'morkie',
+        'mountain-cur',
+        'mountain-dog',
+        'munsterlander',
+        'neapolitan-mastiff',
+        'new-guinea-singing-dog',
+        'newfoundland-dog',
+        'norfolk-terrier',
+        'norwegian-buhund',
+        'norwegian-elkhound',
+        'norwegian-lundehund',
+        'norwich-terrier',
+        'nova-scotia-duck-tolling-retriever',
+        'old-english-sheepdog',
+        'otterhound',
+        'papillon',
+        'parson-russell-terrier',
+        'patterdale-terrier',
+        'pekingese',
+        'pembroke-welsh-corgi',
+        'peruvian-inca-orchid',
+        'petit-basset-griffon-vendeen',
+        'pharaoh-hound',
+        'pit-bull-terrier',
+        'plott-hound',
+        'pointer',
+        'polish-lowland-sheepdog',
+        'pomeranian',
+        'pomsky',
+        'poodle',
+        'portuguese-podengo',
+        'portuguese-water-dog',
+        'presa-canario',
+        'pug',
+        'puggle',
+        'puli',
+        'pumi',
+        'pyrenean-shepherd',
+        'rat-terrier',
+        'redbone-coonhound',
+        'retriever',
+        'rhodesian-ridgeback',
+        'rottweiler',
+        'rough-collie',
+        'saint-bernard',
+        'saluki',
+        'samoyed',
+        'sarplaninac',
+        'schipperke',
+        'schnauzer',
+        'schnoodle',
+        'scottish-deerhound',
+        'scottish-terrier',
+        'sealyham-terrier',
+        'setter',
+        'shar-pei',
+        'sheep-dog',
+        'sheepadoodle',
+        'shepherd',
+        'shetland-sheepdog',
+        'shiba-inu',
+        'shih-poo',
+        'shih-tzu',
+        'shollie',
+        'siberian-husky',
+        'silky-terrier',
+        'skye-terrier',
+        'sloughi',
+        'smooth-collie',
+        'smooth-fox-terrier',
+        'south-russian-ovtcharka',
+        'spaniel',
+        'spanish-water-dog',
+        'spinone-italiano',
+        'spitz',
+        'staffordshire-bull-terrier',
+        'standard-poodle',
+        'standard-schnauzer',
+        'sussex-spaniel',
+        'swedish-vallhund',
+        'tennessee-treeing-brindle',
+        'terrier',
+        'thai-ridgeback',
+        'tibetan-mastiff',
+        'tibetan-spaniel',
+        'tibetan-terrier',
+        'tosa-inu',
+        'toy-fox-terrier',
+        'toy-manchester-terrier',
+        'treeing-walker-coonhound',
+        'vizsla',
+        'weimaraner',
+        'welsh-springer-spaniel',
+        'welsh-terrier',
+        'west-highland-white-terrier',
+        'wheaten-terrier',
+        'whippet',
+        'white-german-shepherd',
+        'wire-fox-terrier',
+        'wirehaired-dachshund',
+        'wirehaired-pointing-griffon',
+        'wirehaired-terrier',
+        'xoloitzcuintli',
+        'yellow-labrador-retriever',
+        'yorkshire-terrier'
+    ];
 
-  useEffect(() => {
-    const fetchBreeds = async () => {
-      try {
-        const getOAuth = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJhZ2J5b3JBM0kxWks5Y2RVQXE2dmdsM05VTVVUUlZBSjVnTmZ6ZVI5Vmp4OFdncThobCIsImp0aSI6IjdkNGMzNGJmOGY3ZGVlZDY3ZTVhNjk5MGNlNWZkYTFmYWFhOTVlMzBjZmY2MDcxMmQzNGVlNWViMGNhZDI0MWNiMDRjMmY1NWVlYTE1N2VkIiwiaWF0IjoxNjg5NzE4NTU2LCJuYmYiOjE2ODk3MTg1NTYsImV4cCI6MTY4OTcyMjE1Niwic3ViIjoiIiwic2NvcGVzIjpbXX0.SG6sr50nPnGZy0F5LSXxoKhDrjhyKvMXPd2vMt5-mvexOd8nKYn6MPO9-ZZD08w8jIIc7gxncYrPbB3Nn_vcnBJ8H0-N08poGTry4HuLC4CovQSUTzqRdDfAIc--TzfCHZsKnNimfL0AZ1EW9i81NmHntazvwbO1qCMQALSQvC6AYKeVgwLTvUy_Tdw1PXhQy9ACAHk2_BCUYVv6r9UwmW8yIGQPEI2JnJLmGAFPl5q_d0sXBhgLpsG1a9GqhryZugxAyo1jJ_LfKTnffKeJXO1qQR05KwkS4kWBwsuIYowGfxqqM_RF-3jCryGVLShoLSjz9OJ9jahRtcSZJqGPqw.OXe4YEo6sJvR7AWz4tMk1a5pxloABNikc4ItSctKuxZpTpxHkKAFHNTWzqIxs0Li23A6YKCLUsnhPMGjL37P6SamN4V_6XAcDUfSNGDD5pghfulNKbo0Lrb1UzT8iFzOiLTuJ6QWTX9XK1ko_Xr8f-5Hul2HKv9G4OKVkVFpqFYWeUU7pYiGJO08oaa4ITFirga_Nnq4eB7dcyOaKFeAYtrd4WKTYCRXbxqQHOd-ar8P_83pVwMrBZFZbFqC-F7j-LuirgqSKUdOO3ei4o2KwjmEV1nvYjgyZip8tzXXQHmRtqcdPJmEuz_LcX016KhXqQuwnWc7yfP0tx9Rfwqy9w';
-        const animalType = 'dog';
-        const url = `https://api.petfinder.com/v2/types/dog/breeds`;
-
-        const headers = {
-          Authorization: `Bearer ${getOAuth}`,
-        };
-
-        const response = await axios.get(url, { headers });
-        const data = response.data;
-
-        if ('breeds' in data) {
-          setBreeds(data.breeds);
-        } else {
-          console.error('Error:', data.detail);
-        }
-      } catch (error) {
-        console.error('Error:', error.message);
-      }
-    };
-
-    fetchBreeds();
-  }, []);
-
-  return (
-    <div>
-      <h1>List of Breeds</h1>
-      <ul>
-        {breeds.map((breed) => (
-          <li key={breed.id}>{breed.name}</li>
-        ))}
-      </ul>
-    </div>
-  );
+    return (
+        <div>
+            <h1>Dog Breeds List</h1>
+            <p>Click for description</p>
+            <ul>
+                {dogBreeds.map((breed, index) => (
+                    <li key={index}>
+                        <a href={`https://www.petfinder.com/dogs-and-puppies/breeds/${breed}`} target="_blank" rel="noopener noreferrer">
+                            {breed}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
 };
 
 export default Breeds;
