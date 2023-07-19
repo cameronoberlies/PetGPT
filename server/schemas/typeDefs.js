@@ -3,18 +3,17 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
     type User {
         _id: ID
-        name: String
+        username: String
         email: String
         password: String
-        zipCode: Int
-        favorites: [String] !
+        zipcode: Int
+        favorites: [String] 
     }
 
-
-    #type Auth {
-    #   token: ID!
-    #   user: User
-    #}
+    type Auth {
+       token: ID!
+       user: User
+    }
     #remember to add this back in once we have auth;
 
     type Query {
@@ -24,9 +23,9 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        #Change to : Auth once we have auth;
-        addUser(name: String!, email: String!, password: String!, zipCode: Int!): User
-        login(email: String!, password: String!): User
+        #Change to : Auth once we have auth; back to :User if we want to test with no auth
+        addUser(username: String!, email: String!, password: String!, zipcode: Int!): Auth
+        login(email: String!, password: String!): Auth
 
         addFavorite(userId: ID!, favorite: String!): User
         removeUser: User

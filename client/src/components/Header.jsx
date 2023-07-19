@@ -211,6 +211,19 @@ const Header = () => {
                 </Button>
                 <Button
                   as={RouterLink}
+                  to="/adopt"
+                  bg={isActive("/adopt") ? activeColor : "transparent"}
+                  color={isActive("/adopt") ? "black" : inactiveColor}
+                  display="inline-flex"
+                  alignItems="center"
+                  fontSize="md"
+                  _hover={{ color: cl }}
+                  _focus={{ boxShadow: "none" }}
+                >
+                  Adopt 
+                </Button>
+                <Button
+                  as={RouterLink}
                   to="/profile"
                   bg={isActive("/profile") ? activeColor : "transparent"}
                   color={isActive("/profile") ? "black" : inactiveColor}

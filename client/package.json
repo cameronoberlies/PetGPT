@@ -4,7 +4,7 @@
     "private": true,
     "proxy": "http://localhost:3001",
     "dependencies": {
-        "@apollo/client": "^3.5.8",
+        "@apollo/client": "^3.7.17",
         "@chakra-ui/react": "^2.7.1",
         "@choc-ui/logo": "^1.0.0",
         "@testing-library/jest-dom": "^5.16.4",
@@ -13,7 +13,7 @@
         "axios": "^1.4.0",
         "bootstrap": "^5.3.0",
         "graphql": "^15.4.0",
-        "openai": "^3.3.0",
+        "jwt-decode": "^3.1.2",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-icons": "^4.10.1",
