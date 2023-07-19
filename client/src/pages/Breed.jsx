@@ -276,7 +276,7 @@ const Breeds = () => {
             <ul>
                 {dogBreeds.map((breed, index) => (
                     <li key={index}>
-                        <a href={`https://www.petfinder.com/dogs-and-puppies/breeds/${breed}`} target="_blank" rel="noopener noreferrer">
+                        <a href={`https://www.petfinder.com/dogs-and-puppies/breeds/${breed}`} target="petfinder" rel="link to petfinder">
                             {breed}
                         </a>
                     </li>
