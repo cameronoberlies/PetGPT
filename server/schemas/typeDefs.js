@@ -6,7 +6,7 @@ const typeDefs = gql`
         username: String
         email: String
         password: String
-        zipcode: Int
+        zipcode: String
         favorites: [String] 
     }
 
@@ -24,7 +24,7 @@ const typeDefs = gql`
 
     type Mutation {
         #Change to : Auth once we have auth; back to :User if we want to test with no auth
-        addUser(username: String!, email: String!, password: String!, zipcode: Int!): Auth
+        addUser(username: String!, email: String!, password: String!, zipcode: String!): Auth
         login(email: String!, password: String!): Auth
 
         addFavorite(userId: ID!, favorite: String!): User
