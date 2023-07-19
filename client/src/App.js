@@ -9,6 +9,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import Main from "./pages/Main";
 import Breed from "./pages/Breed";
+import Adopt from "./pages/Adopt";
 import Profile from "./pages/Profile";
 import Header from "./components/Header";
 import Test from "./pages/Test";
@@ -47,6 +48,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/test" element={<Test />} />
           <Route path="/breed" element={<Breed />} />
+          <Route path="/adopt" element={<Adopt />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
