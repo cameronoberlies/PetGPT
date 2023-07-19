@@ -120,6 +120,7 @@ function Test() {
                         optionClicked(questions[currentQuestion].id, option.id)
                       }
                     />
+                    {' '}
                     {option.text}
                     <span className="checkmark"></span>
                   </label>
