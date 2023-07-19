@@ -1,12 +1,13 @@
 import react, { useEffect, useState} from 'react';
 import axios from 'axios';
 
-const Chat = () => {
+const Chat = (props) => {
   const [ data, setData ] = useState([]);
 
   useEffect(() => {
     fetchData();
   }, []);
+  let choices = props
 
   const fetchData = async () => {
     try {
