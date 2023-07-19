@@ -5,47 +5,57 @@ import '../App.css';
 function Test() {
   const [showResults, setShowResults] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState([]);
+  const [answers, setAnswers] = useState({});
 
   const questions = [
     {
+      id: 'active',
       text: 'How active are you?',
       options: [
-        { id: 0, text: 'Very active' },
-        { id: 1, text: 'Not very active' },
+        { id: 'Active', text: 'Very active' },
+        { id: 'Not active', text: 'Not very active' },
       ],
     },
     {
+      id: 'home',
       text: 'What type of home do you live in?',
       options: [
-        { id: 0, text: 'Apartment' },
-        { id: 1, text: 'House' },
+        { id: 'Apartment', text: 'Apartment' },
+        { id: 'House', text: 'House' },
       ],
     },
     {
+      id: 'size',
       text: 'What size dog are you looking for?',
       options: [
-        { id: 0, text: 'Large' },
-        { id: 1, text: 'Small' },
+        { id: 'Large', text: 'Large' },
+        { id: 'Small', text: 'Small' },
       ],
     },
     {
+      id: 'climate',
       text: 'What type of climate do you live in?',
       options: [
-        { id: 0, text: 'Hot' },
-        { id: 1, text: 'Cold' },
+        { id: 'Hot', text: 'Hot' },
+        { id: 'Cold', text: 'Cold' },
       ],
     },
   ];
 
-  const optionClicked = (optionId) => {
-    const newAnswers = [...answers];
-    newAnswers[currentQuestion] = optionId;
-    setAnswers(newAnswers);
+  const optionClicked = (questionId, optionId) => {
+    setAnswers((prevAnswers) => {
+      const newAnswers = {
+        ...prevAnswers,
+        [questionId]: optionId,
+      };
+      console.log(newAnswers); // Log the updated answers object
+      return newAnswers;
+    });
   };
+  
 
-  const isQuestionAnswered = (questionIndex) => {
-    return typeof answers[questionIndex] !== 'undefined';
+  const isQuestionAnswered = (questionId) => {
+    return answers.hasOwnProperty(questionId);
   };
 
   const handleNextQuestion = () => {
@@ -58,7 +68,7 @@ function Test() {
 
   /* Resets the survey back to the default */
   const restartSurvey = () => {
-    setAnswers([]);
+    setAnswers({});
     setCurrentQuestion(0);
     setShowResults(false);
   };
@@ -92,8 +102,8 @@ function Test() {
                       <label>
                         <input
                           type="checkbox"
-                          checked={isQuestionAnswered(currentQuestion) && answers[currentQuestion] === option.id}
-                          onChange={() => optionClicked(option.id)}
+                          checked={isQuestionAnswered(questions[currentQuestion].id) && answers[questions[currentQuestion].id] === option.id}
+                          onChange={() => optionClicked(questions[currentQuestion].id, option.id)}
                         />
                         {option.text}
                       </label>
@@ -109,6 +119,7 @@ function Test() {
       {/* <Chat {...choices} /> */}
     </>
   );
+  console.log(answers)
 }
 
 export default Test;
