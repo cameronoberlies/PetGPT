@@ -22,7 +22,7 @@ const Chat = (props) => {
       }
       const response = await axios.post('https://api.openai.com/v1/chat/completions', data, {headers: headers});
       setData(response.data.choices[0].message.content);
-      console.log(response.data);
+      console.log(response.data.choices[0].message.content);
     } catch (error) {
       console.log(error);
     }
