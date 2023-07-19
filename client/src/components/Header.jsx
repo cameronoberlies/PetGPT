@@ -27,6 +27,7 @@ import { AiFillHome, AiOutlineInbox, AiOutlineMenu } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { Logo } from "@choc-ui/logo";
+import Auth from '../utils/auth';
 
 const Header = () => {
   const { toggleColorMode: toggleMode } = useColorMode();
@@ -42,7 +43,10 @@ const Header = () => {
   const isActive = (path) => {
     return location.pathname === path;
   };
-
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
 //   const { scrollY } = useViewportScroll();
 //   React.useEffect(() => {
 //     return scrollY.onChange(() => setY(scrollY.get()));
@@ -239,7 +243,48 @@ const Header = () => {
               </HStack>
             </Flex>
             <Flex justify="flex-end" align="center" color="gray.400">
-              <HStack spacing="5" display="flex">
+            <div>
+          {Auth.loggedIn() ? (
+            <>
+              <span>Hey there, {Auth.getProfile().data.username}!</span>
+              <button className="btn btn-sm btn-light m-2" onClick={logout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+            <HStack spacing="5" display="flex">
+               <Link to="/login">
+                <Button as={RouterLink}
+                      to="/login"
+                      bg={isActive("/") ? activeColor : "transparent"}
+                      color={isActive("/") ? "black" : inactiveColor}
+                      display="inline-flex"
+                      alignItems="center"
+                      fontSize="md"
+                      _hover={{ color: cl }}
+                      _focus={{ boxShadow: "none" }}>
+                  Sign in
+                </Button>
+                  </Link>
+                  <Link to="/signup">
+               <Button as={RouterLink}
+                      to="/signup"
+                      bg={isActive("/") ? activeColor : "transparent"}
+                      color={isActive("/") ? "black" : inactiveColor}
+                      display="inline-flex"
+                      alignItems="center"
+                      fontSize="md"
+                      _hover={{ color: cl }}
+                      _focus={{ boxShadow: "none" }}>
+                  Sign up
+                </Button>
+                </Link>
+                </HStack>
+            </>
+          )}
+        </div>
+              {/* <HStack spacing="5" display="flex">
                 <Link to="/login">
                 <Button as={RouterLink}
                       to="/login"
@@ -266,7 +311,7 @@ const Header = () => {
                   Sign up
                 </Button>
                 </Link>
-              </HStack>
+              </HStack> */}
               <IconButton
                 size="md"
                 fontSize="lg"
