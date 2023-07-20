@@ -11,7 +11,7 @@ const Chat = (props) => {
 
   const fetchData = async () => {
     try {
-      const API_KEY = "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"
+      const API_KEY = "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"
       const data = {
         messages: [{role: "user", content: `give me 3 dog breed choices based on a ${choices.lifestyle} lifestyle living in a ${choices.home} home with ${choices.people} people`}],
         model: "gpt-3.5-turbo",
