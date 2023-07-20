@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, RouterLink } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 
@@ -112,8 +112,9 @@ const Login = (props) => {
                 <button
                   type="submit"
                   className="btn btn-primary btn-block mb-4"
+                  
                 >
-                  Sign in
+                  < a href="/test">Sign in</a> 
                 </button>
 
                 {/* Register buttons */}
