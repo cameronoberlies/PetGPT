@@ -73,6 +73,7 @@ function Test() {
         {showResults ? (
           /* 4. Final Results */
           <div className="final-results">
+            <Chat {...answers} />
             <button onClick={() => restartSurvey()}>Restart survey</button>
           </div>
         ) : (
