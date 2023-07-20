@@ -6,12 +6,12 @@
   margin: 0 auto;
 
   /* Dimensions  */
-  width: 50%; /* Can be in percentage also. */
+  width: 25%; /* Can be in percentage also. */
   height: auto;
   margin-top: 64px;
 
   /* Visual  */
-  background-color: gray;
+  /* background-color: gray; */
   padding: 16px;
   border-radius: 16px;
   color: white;
@@ -20,7 +20,7 @@
 }
 
 button {
-  background-color: red; /* Green */
+  /* background-color: red; Green */
   border: none;
   color: white;
   padding: 16px 24px;

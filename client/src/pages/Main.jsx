@@ -1,4 +1,5 @@
 import React from "react";
+import { createContext, useState, useContext } from "react";
 import {
   chakra,
   Box,
@@ -9,6 +10,7 @@ import {
   ButtonGroup,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import Auth from '../utils/auth';
 
 const Main = () => {
   const Feature = (props) => {
@@ -76,11 +78,35 @@ const Main = () => {
           >
             Discover your ideal dog breed match by taking our interactive quiz!
           </chakra.p>
-          <Flex justifyContent="center" my={10}>
+          <div>
+          {Auth.loggedIn() ? (
+            <>
+            <Link to="/test">
+          <Button colorScheme="blue">Get Started!</Button>
+         </Link>
+            </>
+            ) : (
+              <>
           <Link to="/login">
-            <Button colorScheme="blue">Get Started!</Button>
+          <Button colorScheme="blue">Get Started!</Button>
           </Link>
-        </Flex>
+              </>
+            )}
+          </div>
+        {/* //  <Flex justifyContent="center" my={10}>
+      
+        // <Link to="/test">
+        //   <Button colorScheme="blue">Get Started!</Button>
+        // </Link> */}
+    
+     
+      
+        {/* <Link to="/login">
+          <Button colorScheme="blue">Get Started!</Button>
+        </Link>
+      
+    </Flex> */}
+         
           <chakra.p
             mt={4}
             maxW="2xl"
