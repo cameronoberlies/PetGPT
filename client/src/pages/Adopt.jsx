@@ -19,7 +19,6 @@ const Adopt = () => {
   const handleDogSearch = async () => {
     // console log your state variable token
     //console.log('token is', token);
-    // console.log('token is', token);
     try {
       // const tkn = await getOAuth();
       setToken(await getOAuth());
@@ -44,6 +43,7 @@ const Adopt = () => {
   return (
     <div>
       <h2>Search Breeds For Adoption</h2>
+      <p>If no results there are no pets for adoption. Please search again.</p>
 
       <Stack spacing={3}>
         <Input
