@@ -18,7 +18,7 @@ const Adopt = () => {
 
   const handleDogSearch = async () => {
     // console log your state variable token
-    //console.log('token is', token);
+    console.log('token is', token);
     try {
       // const tkn = await getOAuth();
       setToken(await getOAuth());
