@@ -13,7 +13,7 @@ const Chat = (props) => {
     try {
       const API_KEY = process.env.REACT_APP_OPENAI_KEY;
       const data = {
-        messages: [{role: "user", content: `give me 3 dog breed choices based on a ${choices.active} lifestyle living in a ${choices.home} home size ${choices.size} in a ${choices.climate} climate`}],
+        messages: [{role: "user", content: `give me 3 dog breed choices based on a ${choices.lifestyle} lifestyle living in a ${choices.home} composing of ${choices.household} looking for a dog size of ${choices.size} that sheds a ${choices.shedding} amount living in a ${choices.climate} climate`}],
         model: "gpt-3.5-turbo",
       };
       const headers = {
