@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import getOAuth from "../utils/getOAuth";
-<<<<<<< Updated upstream
-// import { Token } from 'graphql/language/ast';
-=======
 import { Button, Stack, Input } from '@chakra-ui/react';
->>>>>>> Stashed changes
 
 const Adopt = () => {
   const [breed, setBreed] = useState('');
@@ -53,11 +49,6 @@ const Adopt = () => {
         placeholder="Enter zipcode"
         value={zipcode}
         onChange={(e) => setZipcode(e.target.value)}
-<<<<<<< Updated upstream
-      />
-      <button onClick={handleDogSearch}>Search</button>
-        {/* retrieves pet photo, partial description with link to petfinder */}
-=======
       /> */}
 
 
@@ -79,11 +70,10 @@ const Adopt = () => {
     onChange={(e) => setZipcode(e.target.value)}
     
   />
- <Button onClick={handleSearch} colorScheme='blue' margin={5}>Search</Button>
+ <Button onClick={handleDogSearch} colorScheme='blue' margin={5}>Search</Button>
 </Stack>
       
 
->>>>>>> Stashed changes
       <div>
         {pets.map((pet) => (
           <div key={pet.id}>
