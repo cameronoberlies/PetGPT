@@ -16,6 +16,7 @@ import Header from "./components/Header";
 import Test from "./pages/Test";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
+import Favorites from "./pages/Favorites";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -51,6 +52,7 @@ function App() {
           <Route path="/breed" element={<Breed />} />
           <Route path="/adopt" element={<Adopt />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </BrowserRouter>
       </ApolloProvider>
