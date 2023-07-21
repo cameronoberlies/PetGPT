@@ -55,7 +55,7 @@ const Chat = (props) => {
 
   return (
     <div>
-      <h1>AI Anwser</h1>
+      <h1>AI Answer</h1>
       <p>{data}</p>
     </div>
   );
