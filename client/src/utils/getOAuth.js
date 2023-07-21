@@ -18,7 +18,7 @@ const getOAuth = async function () {
     console.log('response is ', response);
     // return json;
     const data = await response.json();
-    // console.log('data is', data);
+    console.log('data is', data);
     // destrucutre token, tokenType, and epxires
     const { access_token } = data;
     return access_token;
