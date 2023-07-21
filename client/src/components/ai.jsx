@@ -11,9 +11,9 @@ const Chat = (props) => {
 
   const fetchData = async () => {
     try {
-      const API_KEY = "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"
+      const API_KEY = process.env.REACT_APP_OPENAI_KEY;
       const data = {
-        messages: [{role: "user", content: `give me 3 dog breed choices based on a ${choices.lifestyle} lifestyle living in a ${choices.home} home with ${choices.people} people`}],
+        messages: [{role: "user", content: `give me 3 dog breed choices based on a ${choices.lifestyle} lifestyle living in a ${choices.home} composing of ${choices.household} looking for a dog size of ${choices.size} that sheds a ${choices.shedding} amount living in a ${choices.climate} climate`}],
         model: "gpt-3.5-turbo",
       };
       const headers = {
@@ -22,7 +22,7 @@ const Chat = (props) => {
       }
       const response = await axios.post('https://api.openai.com/v1/chat/completions', data, {headers: headers});
       setData(response.data.choices[0].message.content);
-      console.log(response.data);
+      console.log(response.data.choices[0].message.content);
     } catch (error) {
       console.log(error);
     }
