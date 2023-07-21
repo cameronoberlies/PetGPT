@@ -18,11 +18,8 @@ const Adopt = () => {
 
   const handleDogSearch = async () => {
     // console log your state variable token
-<<<<<<< Updated upstream
     //console.log('token is', token);
-=======
     // console.log('token is', token);
->>>>>>> Stashed changes
     try {
       // const tkn = await getOAuth();
       setToken(await getOAuth());
