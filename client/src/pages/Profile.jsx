@@ -3,9 +3,9 @@ import { Box, Flex, HStack, Image, Text } from "@chakra-ui/react";
 import { FaEnvelope} from "react-icons/fa";
 import {useQuery, gql} from "@apollo/client";
 
-export const QUERY_SINGLE_USER = gql`
-    query user {
-        user {
+export const QUERY_ME = gql`
+    query me {
+        me{
             _id
             username
             favorites
@@ -14,15 +14,19 @@ export const QUERY_SINGLE_USER = gql`
     }
 `;
 function Profile() {
-  const { loading, error, data } = useQuery(QUERY_SINGLE_USER);
-  const {email, username, favorites} = data.user;
+  const { loading, error, data } = useQuery(QUERY_ME);
+  // 
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  const user = data?.user; // Use optional chaining to handle undefined 'data' or 'data.me'
+  const user = data?.me; // Use optional chaining to handle undefined 'data' or 'data.me'
 
-  if (!user) return <p>No user data found.</p>; // Handle cases where 'me' is not available yet
+  const {email, username, favorites} = data.me;
+
+  // if (!me) return <p>No user data found.</p>; // Handle cases where 'me' is not available yet
+
+  
 
    return (
     <Flex
