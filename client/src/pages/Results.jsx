@@ -13,9 +13,7 @@ return (
     
             <div className="final-results">
               <Chat {...answers} />
-              {/* <button className="btn btn-primary d-flex justify-content-center mx-auto"  onClick={() => restartSurvey()}>
-                Restart survey
-              </button> */}
+             
             </div>
          
           

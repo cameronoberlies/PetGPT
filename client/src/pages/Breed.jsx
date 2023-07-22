@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button } from '@chakra-ui/react';
 import Heart from 'react-heart';
+import Chat from '../components/ai';
+import '../test.css';
 export const dogBreeds = [
   "Akbash",
   "Akita",
@@ -269,7 +271,7 @@ export const dogBreeds = [
   "Yorkshire-Terrier",
 ];
 
-const Breeds = () => {
+const Breeds = ( { answers }) => {
   const [checkedBreeds, setCheckedBreeds] = useState([]);
 
   const [favorites, setFavorites] = useState([]);
@@ -288,40 +290,44 @@ const Breeds = () => {
   
 
   return (
-    <div>
-      <h2>Dog Breeds List</h2>
-      <p>Click for description</p>
-      <ul>
-        {dogBreeds.map((breed) => {
-          const formattedBreed =
-            typeof breed === "string"
-              ? breed.toLowerCase().replace(/ /g, "-")
-              : breed;
-          return (
-            <li key={formattedBreed}>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={checkedBreeds.includes(breed)}
-                  onChange={() => handleCheckboxChange(breed)}
-                />
-                
-                <a
-                  href={`https://www.petfinder.com/dogs-and-puppies/breeds/${formattedBreed}`}
-                  target="petfinder"
-                  rel="link to petfinder"
-                >
-                  {breed}
-                </a>
-              </label>
-              {/* <Button onClick={() => handleFavoriteChange(breed)}>
-                {favorites.includes(breed) ? "Remove from favorites" : "Add to favorites"}
-              </Button> */}
-            </li>
-          );
-        })}
-      </ul>
-      {console.log(favorites)}
+    <div className="breeds-container">
+      <div className="dog-breed-list">
+        <h2>Dog Breeds List</h2>
+        <p>Click for description</p>
+        <ul className="dog-breed-ul">
+          {dogBreeds.map((breed) => {
+            const formattedBreed =
+              typeof breed === "string"
+                ? breed.toLowerCase().replace(/ /g, "-")
+                : breed;
+            return (
+              <li key={formattedBreed}>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={checkedBreeds.includes(breed)}
+                    onChange={() => handleCheckboxChange(breed)}
+                  />
+                  <a
+                    href={`https://www.petfinder.com/dogs-and-puppies/breeds/${formattedBreed}`}
+                    target="petfinder"
+                    rel="link to petfinder"
+                  >
+                    {breed}
+                  </a>
+                </label>
+              </li>
+            );
+          })}
+        </ul>
+        {console.log(favorites)}
+      </div>
+
+      <div className="chat-container">
+        <div className="final-results">
+          <Chat {...answers} />
+        </div>
+      </div>
     </div>
   );
 };
