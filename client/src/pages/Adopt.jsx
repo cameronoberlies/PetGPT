@@ -42,8 +42,8 @@ const Adopt = () => {
   // Input breed and zipcode for adoption
   return (
     <div>
-      <h2>Search Breeds For Adoption</h2>
-      <p>If no results there are no pets for adoption. Please search again.</p>
+      <h2>Search Adoptable Dogs</h2>
+      <p>No results means there are no dogs available in your area. Please try searching a different breed or change location </p>
 
       <Stack spacing={3}>
         <Input

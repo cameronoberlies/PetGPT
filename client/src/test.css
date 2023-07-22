@@ -1,25 +1,22 @@
-
-/* Final Results  */
-
+/* test.css */
 .final-results {
   /* Center the div  */
   margin: 0 auto;
   width: 50%;
 
-  /* Dimensions  */
-  width: 70%; /* Can be in percentage also. */
-  height: auto;
-  margin-top: 64px;
-
-  /* Visual  */
-  /* background-color: gray; */
-  padding: 16px;
-  border-radius: 16px;
-  color: white;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    /* Dimensions  */
+    width: 70%; /* Can be in percentage also. */
+    height: auto;
+    margin-top: 64px;
+  
+    /* Visual  */
+    /* background-color: gray; */
+    padding: 16px;
+    border-radius: 16px;
+    color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+      rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 }
-
 button {
   /* background-color: red; Green */
   border: none;
@@ -35,23 +32,41 @@ button {
 }
 .breeds-container {
   display: flex;
+  justify-content: space-between;
 }
 
 .dog-breed-list {
   flex: 1;
+  padding: 20px;
+  border-right: 1px solid #ccc;
+}
+
+.dog-breed-list h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.dog-breed-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dog-breed-list li {
+  margin-bottom: 10px;
+}
+
+.dog-breed-list label {
+  cursor: pointer;
+  display: block;
+}
+
+.dog-breed-list input[type="checkbox"] {
+  margin-right: 10px;
 }
 
 .chat-container {
   flex: 1;
   padding: 20px;
-  width: 50%;
-  margin: 0 auto; /* Centers the container horizontally (if needed) */
-  word-wrap: break-word;
 }
-.dog-breed-ul {
-  
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-    padding: 10px;
-}
+
+/* Add any other styles as per your design preference */

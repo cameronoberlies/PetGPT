@@ -1,10 +1,11 @@
-import react, { useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 import {Configuration, OpenAIApi} from 'openai';
 import '../test.css'
 
 const Chat = (props) => {
   const [ data, setData ] = useState([]);
+  const [ chatHistory, setChatHistory ] = useState([]); 
 
   useEffect(() => {
     fetchData();
@@ -26,7 +27,19 @@ const Chat = (props) => {
       };
 
       const response = await openai.createChatCompletion(data);
-      setData(response.data.choices[0].message.content);
+      // setData(response.data.choices[0].message.content);
+      const responseData = response.data.choices[0].message.content;
+      const words = responseData.split(' ');
+
+      let wordIndex = 0;
+      const timer = setInterval(() => {
+        if (wordIndex < words.length) {
+          setChatHistory(prevHistory => [...prevHistory, words[wordIndex]]);
+          wordIndex++;
+        } else {
+          clearInterval(timer);
+        }
+      }, 75);
     } catch (error) {
       console.log(error);
     }
@@ -57,7 +70,12 @@ const Chat = (props) => {
   return (
     <div className='ai-response'>
       <h1>AI Answer</h1>
-      <p>{data}</p>
+      {/* <p>{data}</p> */}
+      <p>
+        {chatHistory.map((word, index) => (
+          <span key={index}>{word} </span>
+        ))}
+      </p>
     </div>
   );
 };

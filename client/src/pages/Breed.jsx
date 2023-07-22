@@ -292,8 +292,8 @@ const Breeds = ( { answers }) => {
   return (
     <div className="breeds-container">
       <div className="dog-breed-list">
-        <h2>Dog Breeds List</h2>
-        <p>Click for description</p>
+        <h2>Dog Breeds</h2>
+        <p>Click for more information</p>
         <ul className="dog-breed-ul">
           {dogBreeds.map((breed) => {
             const formattedBreed =
