@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Button } from '@chakra-ui/react';
+import Heart from 'react-heart';
 export const dogBreeds = [
   "Akbash",
   "Akita",
@@ -270,13 +272,20 @@ export const dogBreeds = [
 const Breeds = () => {
   const [checkedBreeds, setCheckedBreeds] = useState([]);
 
+  const [favorites, setFavorites] = useState([]);
+
   const handleCheckboxChange = (breed) => {
     if (checkedBreeds.includes(breed)) {
       setCheckedBreeds(checkedBreeds.filter((item) => item !== breed));
+      setFavorites(favorites.filter((item) => item !== breed));
     } else {
       setCheckedBreeds([...checkedBreeds, breed]);
+      setFavorites([...favorites, breed]);
     }
   };
+
+
+  
 
   return (
     <div>
@@ -296,6 +305,7 @@ const Breeds = () => {
                   checked={checkedBreeds.includes(breed)}
                   onChange={() => handleCheckboxChange(breed)}
                 />
+                
                 <a
                   href={`https://www.petfinder.com/dogs-and-puppies/breeds/${formattedBreed}`}
                   target="petfinder"
@@ -304,10 +314,14 @@ const Breeds = () => {
                   {breed}
                 </a>
               </label>
+              {/* <Button onClick={() => handleFavoriteChange(breed)}>
+                {favorites.includes(breed) ? "Remove from favorites" : "Add to favorites"}
+              </Button> */}
             </li>
           );
         })}
       </ul>
+      {console.log(favorites)}
     </div>
   );
 };

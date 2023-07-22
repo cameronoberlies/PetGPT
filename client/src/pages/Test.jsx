@@ -1,10 +1,11 @@
 
 import React, { useState } from 'react';
-import Chat from '../components/ai';
+// import Chat from '../components/ai';
 import '../test.css';
+import { useNavigate } from 'react-router-dom';
 
 function Test() {
-  const [showResults, setShowResults] = useState(false);
+const [showResults, setShowResults] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
 
@@ -90,11 +91,16 @@ function Test() {
   };
 
 
-  const restartSurvey = () => {
-    setAnswers({});
-    setCurrentQuestion(0);
-    setShowResults(false);
-  };
+//   const restartSurvey = () => {
+//     setAnswers({});
+//     setCurrentQuestion(0);
+//     setShowResults(false);
+//   };
+
+  const navigate = useNavigate();
+  const goToResultsPage = () => {
+    navigate('/results');
+  }
 
   return (
     <>
@@ -142,7 +148,13 @@ function Test() {
           <div className="ml-auto mr-sm-5">
             <button
               className="btn btn-success"
-              onClick={() => handleNextQuestion()}
+              onClick={() => {
+                if (currentQuestion === questions.length - 1) {
+                  goToResultsPage();
+                } else {
+                  handleNextQuestion();
+                }
+              }}
             >
               {currentQuestion === questions.length - 1 ? 'Finish' : 'Next'}
             </button>
@@ -150,15 +162,15 @@ function Test() {
         </div>
       </div>
 
-      {showResults && (
+      {/* {showResults && (
         <div className="final-results">
           <Chat {...answers} />
           <button className="btn btn-primary d-flex justify-content-center mx-auto"  onClick={() => restartSurvey()}>
             Restart survey
-          </button>
+          </button> 
         </div>
-      )}
-      {/* <Chat {...choices} /> */}
+      )} 
+       <Chat {...choices} /> */}
     </>
   );
 }
