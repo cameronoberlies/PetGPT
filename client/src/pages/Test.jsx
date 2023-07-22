@@ -99,7 +99,7 @@ const [showResults, setShowResults] = useState(false);
 
   const navigate = useNavigate();
   const goToResultsPage = () => {
-    navigate('/results');
+    navigate('/breed');
   }
 
   return (

@@ -1,6 +1,7 @@
 import react, { useEffect, useState} from 'react';
 import axios from 'axios';
 import {Configuration, OpenAIApi} from 'openai';
+import '../test.css'
 
 const Chat = (props) => {
   const [ data, setData ] = useState([]);
@@ -54,7 +55,7 @@ const Chat = (props) => {
   // };
 
   return (
-    <div>
+    <div className='ai-response'>
       <h1>AI Answer</h1>
       <p>{data}</p>
     </div>
