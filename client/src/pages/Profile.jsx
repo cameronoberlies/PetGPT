@@ -124,10 +124,12 @@ function Profile () {
   
     return (
     <div>
+
           {Auth.loggedIn() ? (
             <>
              <div>
-      <h2>User Profile</h2>
+      <h1>Hello, {Auth.getProfile().data.username}!</h1>
+      <h3>My favorites</h3>
       <ul>
         {favorites.map((breed) => (
           <li key={breed}>{breed}</li>

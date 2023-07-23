@@ -284,7 +284,7 @@ const Breeds = ( { answers }) => {
       removeFavorite(breed);
     } else {
       setCheckedBreeds([...checkedBreeds, breed]);
-      addFavorite([...favorites, breed]);
+      addFavorite(breed);
     }
   };
 
