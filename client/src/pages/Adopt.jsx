@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import getOAuth from "../utils/getOAuth";
-import { Button, Stack, Input } from '@chakra-ui/react';
+import { Box, Button, Stack, Input } from '@chakra-ui/react';
 import { dogBreeds } from './Breed';
 
 const Adopt = () => {
@@ -35,7 +35,7 @@ const Adopt = () => {
       console.error(error);
     }
   };
-
+  
   // Filter dog breeds based on user input
   const filteredBreeds = breed ? dogBreeds.filter(b => b.toLowerCase().includes(breed.toLowerCase())) : [];
 
@@ -63,6 +63,25 @@ const Adopt = () => {
         />
         <Button onClick={handleDogSearch} colorScheme='blue' margin={5}>Search</Button>
       </Stack>
+      <h2><center> Please give us a home! </center></h2>
+
+      <Box
+          bg="#edf3f8"
+          _dark={{ bg: "#3e3e3e" }}
+          style={{
+            backgroundImage:
+              "url(https://as1.ftcdn.net/v2/jpg/00/75/04/04/1000_F_75040475_GT4SN0IArz77DrSgrC174lfBt2IPpjrv.jpg)",
+            backgroundSize: "large",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+          height="100%"
+          width="100%"
+          borderRadius="lg"
+          p={120}
+          display="flex"
+          alignItems="left">
+            </Box>
 
       {/* Display breed suggestions */}
       {filteredBreeds.length > 0 && (
@@ -90,6 +109,8 @@ const Adopt = () => {
     </div>
   );
 };
+
+
 
 export default Adopt;
 
