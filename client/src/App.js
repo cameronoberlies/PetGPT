@@ -17,6 +17,8 @@ import Test from "./pages/Test";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Results from './pages/Results';
+import { FavoritesProvider } from './components/FavoritesContext';
+
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -41,8 +43,11 @@ const client = new ApolloClient({
 function App() {
   return (
     <>
+    
     <ApolloProvider client={client}>
+      
       <BrowserRouter>
+      <FavoritesProvider>
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
@@ -54,8 +59,10 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/results" element={<Results />} />
         </Routes>
+        </FavoritesProvider>
       </BrowserRouter>
       </ApolloProvider>
+      
     </>
   );
 }

@@ -3,6 +3,7 @@ import { Button } from '@chakra-ui/react';
 import Heart from 'react-heart';
 import Chat from '../components/ai';
 import '../test.css';
+import { useFavorites } from "../components/FavoritesContext";
 export const dogBreeds = [
   "Akbash",
   "Akita",
@@ -272,17 +273,18 @@ export const dogBreeds = [
 ];
 
 const Breeds = ( { answers }) => {
+  const { favorites, addFavorite, removeFavorite } = useFavorites();
   const [checkedBreeds, setCheckedBreeds] = useState([]);
 
-  const [favorites, setFavorites] = useState([]);
+
 
   const handleCheckboxChange = (breed) => {
     if (checkedBreeds.includes(breed)) {
       setCheckedBreeds(checkedBreeds.filter((item) => item !== breed));
-      setFavorites(favorites.filter((item) => item !== breed));
+      removeFavorite(breed);
     } else {
       setCheckedBreeds([...checkedBreeds, breed]);
-      setFavorites([...favorites, breed]);
+      addFavorite([...favorites, breed]);
     }
   };
 

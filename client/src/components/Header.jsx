@@ -284,34 +284,7 @@ const Header = () => {
             </>
           )}
         </div>
-              {/* <HStack spacing="5" display="flex">
-                <Link to="/login">
-                <Button as={RouterLink}
-                      to="/login"
-                      bg={isActive("/") ? activeColor : "transparent"}
-                      color={isActive("/") ? "black" : inactiveColor}
-                      display="inline-flex"
-                      alignItems="center"
-                      fontSize="md"
-                      _hover={{ color: cl }}
-                      _focus={{ boxShadow: "none" }}>
-                  Sign in
-                </Button>
-                  </Link>
-               <Link to="/signup">
-               <Button as={RouterLink}
-                      to="/signup"
-                      bg={isActive("/") ? activeColor : "transparent"}
-                      color={isActive("/") ? "black" : inactiveColor}
-                      display="inline-flex"
-                      alignItems="center"
-                      fontSize="md"
-                      _hover={{ color: cl }}
-                      _focus={{ boxShadow: "none" }}>
-                  Sign up
-                </Button>
-                </Link>
-              </HStack> */}
+             
               <IconButton
                 size="md"
                 fontSize="lg"

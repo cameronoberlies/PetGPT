@@ -105,22 +105,42 @@
 
 
 import React from "react";
-import { Box, Flex, HStack, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, HStack, Image, Text, Button } from "@chakra-ui/react";
 import { FaEnvelope} from "react-icons/fa";
 import {useQuery, gql} from "@apollo/client";
 import Auth from "../utils/auth";
+import { useFavorites } from "../components/FavoritesContext";
+import { Link } from "react-router-dom";
+
+
 
 function Profile () {
+ 
+  const { favorites } = useFavorites();
+
+
+ 
+  
   
     return (
     <div>
           {Auth.loggedIn() ? (
             <>
-           
+             <div>
+      <h2>User Profile</h2>
+      <ul>
+        {favorites.map((breed) => (
+          <li key={breed}>{breed}</li>
+        ))}
+      </ul>
+     
+    </div>
             </>
             ) : (
               <>
-         
+         <Link to="/login">
+          <Button colorScheme="blue">Login</Button>
+          </Link>
               </>
             )}
           </div>
