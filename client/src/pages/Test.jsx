@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 // import Chat from '../components/ai';
 import '../test.css';
 import { useNavigate } from 'react-router-dom';
+import Breeds from './Breed';
 
 function Test() {
 const [showResults, setShowResults] = useState(false);
@@ -47,24 +48,24 @@ const [showResults, setShowResults] = useState(false);
         { id: 'large', text: 'Large' },
       ],
     },
-    {
-      id: 'shedding',
-      text: 'What is your shedding preference?',
-      options: [
-        { id: 'low', text: 'Low' },
-        { id: 'moderate', text: 'Moderate' },
-        { id: 'high', text: 'High' },
-      ],
-    },
-    {
-      id: 'climate',
-      text: 'What is the climate where you live?',
-      options: [
-        { id: 'hot', text: 'Hot' },
-        { id: 'mild', text: 'Mild' },
-        { id: 'cold', text: 'Cold' },
-      ],
-    },
+    // {
+    //   id: 'shedding',
+    //   text: 'What is your shedding preference?',
+    //   options: [
+    //     { id: 'low', text: 'Low' },
+    //     { id: 'moderate', text: 'Moderate' },
+    //     { id: 'high', text: 'High' },
+    //   ],
+    // },
+    // {
+    //   id: 'climate',
+    //   text: 'What is the climate where you live?',
+    //   options: [
+    //     { id: 'hot', text: 'Hot' },
+    //     { id: 'mild', text: 'Mild' },
+    //     { id: 'cold', text: 'Cold' },
+    //   ],
+    // },
   ];
 
   const optionClicked = (questionId, optionId) => {
@@ -99,7 +100,7 @@ const [showResults, setShowResults] = useState(false);
 
   const navigate = useNavigate();
   const goToResultsPage = () => {
-    navigate('/breed');
+    navigate('/breed', { state: { answers } });
   }
 
   return (
@@ -108,7 +109,7 @@ const [showResults, setShowResults] = useState(false);
         <div className="question ml-sm-5 pl-sm-5 pt-2">
           <div className="py-2 h5">
             <b>
-              Question {currentQuestion + 1} of 6. {questions[currentQuestion].text} 
+              Question {currentQuestion + 1} of 4. {questions[currentQuestion].text} 
             </b>
           </div>
           <div className="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
@@ -158,10 +159,11 @@ const [showResults, setShowResults] = useState(false);
             >
               {currentQuestion === questions.length - 1 ? 'Finish' : 'Next'}
             </button>
+           
           </div>
         </div>
       </div>
-
+      {showResults && <Breeds answers={answers} />}
       {/* {showResults && (
         <div className="final-results">
           <Chat {...answers} />

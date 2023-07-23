@@ -4,6 +4,7 @@ import Heart from 'react-heart';
 import Chat from '../components/ai';
 import '../test.css';
 import { useFavorites } from "../components/FavoritesContext";
+import { useLocation } from "react-router-dom";
 export const dogBreeds = [
   "Akbash",
   "Akita",
@@ -272,7 +273,11 @@ export const dogBreeds = [
   "Yorkshire-Terrier",
 ];
 
-const Breeds = ( { answers }) => {
+const Breeds = () => {
+
+  const location = useLocation();
+  const answers = location.state?.answers || {};
+  
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   const [checkedBreeds, setCheckedBreeds] = useState([]);
 
@@ -324,13 +329,16 @@ const Breeds = ( { answers }) => {
         </ul>
         {console.log(favorites)}
       </div>
-
-      <div className="chat-container">
+ 
+<div className="chat-container">
         <div className="final-results">
           <Chat {...answers} />
         </div>
       </div>
+      
     </div>
+    
+      
   );
 };
 
