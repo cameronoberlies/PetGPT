@@ -55,10 +55,10 @@ const Signup = () => {
               <div className="col-lg-6 mb-5 mb-lg-0">
                 <h1 className="my-5 display-3 fw-bold ls-tight">
                   Profile <br />
-                  <span className="text-primary">for your business</span>
+                  <span className="text-primary">Sign Up Page</span>
                 </h1>
                 <p style={{ color: "hsl(217, 10%, 50.8%)" }}>
-                  Your favorite breeds are posted here. 
+                  Please enter your information. 
                 </p>
               </div>
 
