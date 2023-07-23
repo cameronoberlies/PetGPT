@@ -63,7 +63,7 @@ The Perfect Dog Breed Matcher App is a web application that helps users find the
 Contributions to this project are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
 
 ## Deployed link 
-https://git.heroku.com/pet-matcher1.git
+[https://git.heroku.com/pet-matcher1.git](https://pet-matcher1-248c77335236.herokuapp.com/)
 
 ## License
 
