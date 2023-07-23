@@ -26,6 +26,7 @@ function Profile () {
       <ul>
         {favorites.map((breed) => (
           <li key={breed}>{breed}</li>
+          
         ))}
       </ul>
              <Flex flexDirection="row">
