@@ -15,6 +15,7 @@ export const QUERY_SINGLE_USER = gql`
             _id
             username
             favorites
+            email
         }
     }
 `;
@@ -25,6 +26,7 @@ export const QUERY_ME = gql`
             _id
             username
             favorites
+            email
         }
     }
 `;
