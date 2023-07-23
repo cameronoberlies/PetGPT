@@ -20,7 +20,7 @@
         "react-heart": "^1.0.6",
         "react-icons": "^4.10.1",
         "react-router-dom": "^6.13.1",
-        "react-scripts": "5.0.1",
+        "react-scripts": "^5.0.1",
         "web-vitals": "^2.1.4"
     },
     "scripts": {
@@ -46,8 +46,5 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
-    },
-    "devDependencies": {
-        "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
     }
 }
