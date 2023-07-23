@@ -87,19 +87,7 @@ const Login = (props) => {
                 {/* 2 column grid layout */}
                 <div className="row mb-4">
                   <div className="col-md-6 d-flex justify-content-center">
-                    {/* Checkbox */}
-                    {/* <div className="form-check mb-3 mb-md-0">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="loginCheck"
-                        checked
-                      />
-                      <label className="form-check-label" htmlFor="loginCheck">
-                        Remember me
-                      </label>
-                    </div> */}
+                   
                   </div>
 
                   <div className="col-md-6 d-flex justify-content-center">
