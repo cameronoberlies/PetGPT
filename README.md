@@ -1,6 +1,10 @@
 # Perfect Dog Breed Matcher App
 
-![App Screenshot](screenshot.png)
+<img width="1440" alt="Screenshot 2023-07-23 at 3 51 40 PM" src="https://github.com/cameronoberlies/prework-studies-guide/assets/123196319/3744b3f9-a7d4-467c-b617-42896d0e7dcf">
+
+<img width="1440" alt="Screenshot 2023-07-23 at 3 51 45 PM" src="https://github.com/cameronoberlies/prework-studies-guide/assets/123196319/8508c343-9162-440a-92b2-38496ee7bf38">
+
+<img width="1440" alt="Screenshot 2023-07-23 at 3 51 59 PM" src="https://github.com/cameronoberlies/prework-studies-guide/assets/123196319/ba3f1f56-4670-4de8-bb8f-b96b8bfb5b6e">
 
 The Perfect Dog Breed Matcher App is a web application that helps users find their perfect dog breed match by taking a six-question test. The app utilizes the OpenAI API for generating personalized responses based on the user's preferences. Additionally, it leverages the Petfinder API to display dogs available for adoption in the user's area that match their preferences.
 
@@ -59,6 +63,9 @@ The Perfect Dog Breed Matcher App is a web application that helps users find the
 ## Contributions
 
 Contributions to this project are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
+
+## Deployed link 
+https://git.heroku.com/pet-matcher1.git
 
 ## License
 
