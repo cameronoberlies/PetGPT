@@ -29,7 +29,7 @@ const Chat = (props) => {
       const response = await openai.createChatCompletion(data);
       // setData(response.data.choices[0].message.content);
       const responseData = response.data.choices[0].message.content;
-      const words = responseData.split(' ');
+      const words = responseData.split('\n');
 
       let wordIndex = 0;
       const timer = setInterval(() => {
@@ -73,7 +73,9 @@ const Chat = (props) => {
       {/* <p>{data}</p> */}
       <p>
         {chatHistory.map((word, index) => (
-          <span key={index}>{word} </span>
+          <React.Fragment key={index}>{word}
+          <br />
+          </React.Fragment>
         ))}
       </p>
     </div>
