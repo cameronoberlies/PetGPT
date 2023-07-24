@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from '@chakra-ui/react';
+import { Button, Input } from '@chakra-ui/react';
 import Heart from 'react-heart';
 import Chat from '../components/ai';
 import '../test.css';
@@ -280,6 +280,7 @@ const Breeds = () => {
   
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   const [checkedBreeds, setCheckedBreeds] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(""); //Change here
 
 
 
@@ -293,6 +294,10 @@ const Breeds = () => {
     }
   };
 
+  const filteredBreeds = dogBreeds.filter((breed) =>
+  breed.toLowerCase().includes(searchQuery.toLowerCase())
+);
+
 
   
 
@@ -301,8 +306,17 @@ const Breeds = () => {
       <div className="dog-breed-list">
         <h2>Dog Breeds</h2>
         <p>Click for more information</p>
+
+        <Input
+          type="text"
+          placeholder="Search for a breed..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+
+
         <ul className="dog-breed-ul">
-          {dogBreeds.map((breed) => {
+          {filteredBreeds.map((breed) => {
             const formattedBreed =
               typeof breed === "string"
                 ? breed.toLowerCase().replace(/ /g, "-")
