@@ -21,7 +21,7 @@ const Chat = (props) => {
       const data = {
         messages: [
           {role: 'assistant', content: "You are a overenthusiastic dog lover"},
-          {role: "user", content: `give me 3 dog breed choices based on a ${choices.lifestyle} lifestyle living in a ${choices.home} composing of ${choices.household} looking for a dog size of ${choices.size} that sheds a ${choices.shedding} amount living in a ${choices.climate} climate. Please place each suggestion on a new line`}
+          {role: "user", content: `give me 3 dog breed choices based on a ${choices.lifestyle} lifestyle living in a ${choices.home} composing of ${choices.household} looking for a dog size of ${choices.size}. With discriptions of each breed.`}
         ],
         model: "gpt-3.5-turbo",
       };
@@ -29,6 +29,7 @@ const Chat = (props) => {
       const response = await openai.createChatCompletion(data);
       // setData(response.data.choices[0].message.content);
       const responseData = response.data.choices[0].message.content;
+      console.log(responseData);
       const words = responseData.split(' ');
 
       let wordIndex = 0;

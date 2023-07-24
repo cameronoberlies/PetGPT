@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from '@chakra-ui/react';
-import Heart from 'react-heart';
+//import Heart from 'react-heart';
 import Chat from '../components/ai';
 import '../test.css';
 import { useFavorites } from "../components/FavoritesContext";
@@ -275,6 +275,7 @@ export const dogBreeds = [
 const Breeds = ( { answers }) => {
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   const [checkedBreeds, setCheckedBreeds] = useState([]);
+  
 
 
 
