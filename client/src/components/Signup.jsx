@@ -54,8 +54,7 @@ const Signup = () => {
             <div className="row gx-lg-5 align-items-center">
               <div className="col-lg-6 mb-5 mb-lg-0">
                 <h1 className="my-5 display-3 fw-bold ls-tight">
-
-                   <br />
+                  <br />
                   <span className="text-primary">Pet-Matcher</span>
                 </h1>
                 <p style={{ color: "hsl(217, 10%, 50.8%)" }}>
@@ -65,14 +64,7 @@ const Signup = () => {
                   home, and preferences, and receive top dog breed choices tailored just 
                   for you. Explore real-time access to Petfinder's database of adoptable dogs in 
                   your area and find your forever furry friend. Embrace the future of pet adoption 
-                  with our AI-powered app and discover the paw-fect match for a lifetime of love and happiness.
-
-                  Profile <br />
-                  <span className="text-primary">Sign Up Page</span>
-                </h1>
-                <p style={{ color: "hsl(217, 10%, 50.8%)" }}>
-                  Please enter your information. 
-
+                  with our AI-powered app and discover the paw-fect match for a lifetime of love and happiness. 
                 </p>
               </div>
 
@@ -185,3 +177,7 @@ const Signup = () => {
 };
 
 export default Signup;
+
+                
+
+               
