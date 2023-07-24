@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import getOAuth from "../utils/getOAuth";
-import { Box, Button, Stack, Input } from '@chakra-ui/react';
+import { Box, Button, Stack, Input, Flex, Link, Image, chakra, Wrap, WrapItem } from '@chakra-ui/react';
 import { dogBreeds } from './Breed';
+
 
 const Adopt = () => {
   const [breed, setBreed] = useState('');
@@ -95,7 +96,7 @@ const Adopt = () => {
         </ul>
       )}
 
-      <div>
+      {/* <div>
         {pets.map((pet) => (
           <div key={pet.id}>
             <img src={pet.photos.length > 0 ? pet.photos[0].medium : ''} alt={pet.name} />
@@ -106,7 +107,65 @@ const Adopt = () => {
             </a>
           </div>
         ))}
-      </div>
+      </div> */}
+
+<div>
+    <Wrap spacing="4"> {/* Adjust the spacing between cards */}
+      {pets.map((pet) => (
+        <WrapItem key={pet.id}>
+          <Flex
+            bg="#edf3f8"
+            _dark={{ bg: "#3e3e3e" }}
+            p={50}
+            w="full"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Box
+              w="xs"
+              bg="white"
+              _dark={{ bg: "gray.800" }}
+              shadow="lg"
+              rounded="lg"
+              overflow="hidden"
+              mx="auto"
+            >
+              <Image
+                w="full"
+                h={56}
+                fit="cover"
+                src={pet.photos.length > 0 ? pet.photos[0].medium : ""}
+                alt={pet.name}
+              />
+
+              <Box py={5} textAlign="center">
+                <Link
+                  display="block"
+                  fontSize="2xl"
+                  color="gray.800"
+                  _dark={{ color: "white" }}
+                  fontWeight="bold"
+                  as="a"
+                  href={pet.url}
+                  target="_blank"
+                  
+                >
+                  {pet.name}
+                </Link>
+                <chakra.span
+                  fontSize="sm"
+                  color="gray.700"
+                  _dark={{ color: "gray.200" }}
+                >
+                  {pet.description}
+                </chakra.span>
+              </Box>
+            </Box>
+          </Flex>
+        </WrapItem>
+      ))}
+    </Wrap>
+  </div>
     </div>
   );
 };
