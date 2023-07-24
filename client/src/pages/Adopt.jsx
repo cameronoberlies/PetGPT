@@ -44,7 +44,7 @@ const Adopt = () => {
     <div>
       <h2>Search Adoptable Dogs</h2>
       <p>No results means there are no dogs available in your area. Please try searching a different breed or change location </p>
-
+      <p>Scroll down for results</p>
       <Stack spacing={3}>
         <Input
           focusBorderColor='pink.400'
@@ -63,7 +63,7 @@ const Adopt = () => {
         />
         <Button onClick={handleDogSearch} colorScheme='blue' margin={5}>Search</Button>
       </Stack>
-      <h2><center> Please give us a home! </center></h2>
+      <h3><center> Please take us home! </center></h3>
 
       <Box
           bg="#edf3f8"
