@@ -43,7 +43,7 @@ const Chat = (props) => {
         } else {
           clearInterval(timer);
         }
-      }, 75);
+      }, 200);
     } catch (error) {
       console.log(error);
     }
@@ -75,13 +75,13 @@ const Chat = (props) => {
     <div className='ai-response'>
       <h1>AI Answer</h1>
       {/* <p>{data}</p> */}
-      <p>
+      <span>
         {chatHistory.map((word, index) => (
           <React.Fragment key={index}>{word}
           <br />
           </React.Fragment>
         ))}
-      </p>
+      </span>
       
     </div>
   );
