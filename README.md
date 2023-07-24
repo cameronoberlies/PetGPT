@@ -67,7 +67,7 @@ James Pierce, Valerie Guerra, Sophia Perez, Cameron Oberlies and Riven Loya.
 Contributions to this project are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
 
 ## Deployed link 
-[https://git.heroku.com/pet-matcher1.git](https://pet-matcher1-248c77335236.herokuapp.com/)
+Heroku link (https://pet-matcher1-248c77335236.herokuapp.com/)
 
 ## License
 
