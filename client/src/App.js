@@ -17,6 +17,7 @@ import Test from "./pages/Test";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Results from './pages/Results';
+import Donate from "./components/Donate";
 
 
 
@@ -58,6 +59,7 @@ function App() {
           <Route path="/adopt" element={<Adopt />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/results" element={<Results />} />
+          <Route path="/donate" element={<Donate />} />
         </Routes>
         
       </BrowserRouter>
