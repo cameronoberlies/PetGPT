@@ -239,6 +239,20 @@ const Header = () => {
                 >
                   My Profile
                 </Button>
+                <Button
+                  as={RouterLink}
+                  to="https://buy.stripe.com/test_aEU5lH4DEdA4gaQ8ww"
+                  target="_blank"
+                  bg={isActive("/donate") ? activeColor : "transparent"}
+                  color={isActive("/donate") ? "black" : inactiveColor}
+                  display="inline-flex"
+                  alignItems="center"
+                  fontSize="md"
+                  _hover={{ color: cl }}
+                  _focus={{ boxShadow: "none" }}
+                >
+                  Donate
+                </Button>
               
               </HStack>
             </Flex>

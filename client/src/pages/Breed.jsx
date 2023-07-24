@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Button } from '@chakra-ui/react';
+import { Button, Input } from '@chakra-ui/react';
 import Heart from 'react-heart';
 import Chat from '../components/ai';
 import '../test.css';
 import { useFavorites } from "../components/FavoritesContext";
+import { useLocation } from "react-router-dom";
 export const dogBreeds = [
   "Akbash",
   "Akita",
@@ -272,9 +273,14 @@ export const dogBreeds = [
   "Yorkshire-Terrier",
 ];
 
-const Breeds = ( { answers }) => {
+const Breeds = () => {
+
+  const location = useLocation();
+  const answers = location.state?.answers || {};
+  
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   const [checkedBreeds, setCheckedBreeds] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(""); //Change here
 
 
 
@@ -284,9 +290,13 @@ const Breeds = ( { answers }) => {
       removeFavorite(breed);
     } else {
       setCheckedBreeds([...checkedBreeds, breed]);
-      addFavorite([...favorites, breed]);
+      addFavorite(breed);
     }
   };
+
+  const filteredBreeds = dogBreeds.filter((breed) =>
+  breed.toLowerCase().includes(searchQuery.toLowerCase())
+);
 
 
   
@@ -296,8 +306,17 @@ const Breeds = ( { answers }) => {
       <div className="dog-breed-list">
         <h2>Dog Breeds</h2>
         <p>Click for more information</p>
+
+        <Input
+          type="text"
+          placeholder="Search for a breed..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+
+
         <ul className="dog-breed-ul">
-          {dogBreeds.map((breed) => {
+          {filteredBreeds.map((breed) => {
             const formattedBreed =
               typeof breed === "string"
                 ? breed.toLowerCase().replace(/ /g, "-")
@@ -324,13 +343,16 @@ const Breeds = ( { answers }) => {
         </ul>
         {console.log(favorites)}
       </div>
-
-      <div className="chat-container">
+ 
+<div className="chat-container">
         <div className="final-results">
           <Chat {...answers} />
         </div>
       </div>
+      
     </div>
+    
+      
   );
 };
 

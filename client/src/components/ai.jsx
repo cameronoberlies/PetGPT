@@ -1,11 +1,13 @@
 import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 import {Configuration, OpenAIApi} from 'openai';
-import '../test.css'
+import '../test.css';
+
 
 const Chat = (props) => {
   const [ data, setData ] = useState([]);
   const [ chatHistory, setChatHistory ] = useState([]); 
+  
 
   useEffect(() => {
     fetchData();
@@ -21,15 +23,17 @@ const Chat = (props) => {
       const data = {
         messages: [
           {role: 'assistant', content: "You are a overenthusiastic dog lover"},
-          {role: "user", content: `give me 3 dog breed choices based on a ${choices.lifestyle} lifestyle living in a ${choices.home} composing of ${choices.household} looking for a dog size of ${choices.size} that sheds a ${choices.shedding} amount living in a ${choices.climate} climate. Please place each suggestion on a new line`}
+          {role: "user", content: `give me 3 dog breed choices based on a ${choices.lifestyle} lifestyle living in a ${choices.home} composing of ${choices.household} looking for a dog size of ${choices.size}. Please place each suggestion on a new line`}
         ],
         model: "gpt-3.5-turbo",
       };
 
       const response = await openai.createChatCompletion(data);
+      
       // setData(response.data.choices[0].message.content);
       const responseData = response.data.choices[0].message.content;
-      const words = responseData.split(' ');
+      console.log(responseData)
+      const words = responseData.split('\n');
 
       let wordIndex = 0;
       const timer = setInterval(() => {
@@ -39,7 +43,7 @@ const Chat = (props) => {
         } else {
           clearInterval(timer);
         }
-      }, 75);
+      }, 200);
     } catch (error) {
       console.log(error);
     }
@@ -71,11 +75,14 @@ const Chat = (props) => {
     <div className='ai-response'>
       <h1>AI Answer</h1>
       {/* <p>{data}</p> */}
-      <p>
+      <span>
         {chatHistory.map((word, index) => (
-          <span key={index}>{word} </span>
+          <React.Fragment key={index}>{word}
+          <br />
+          </React.Fragment>
         ))}
-      </p>
+      </span>
+      
     </div>
   );
 };

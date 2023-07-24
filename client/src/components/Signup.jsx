@@ -54,14 +54,17 @@ const Signup = () => {
             <div className="row gx-lg-5 align-items-center">
               <div className="col-lg-6 mb-5 mb-lg-0">
                 <h1 className="my-5 display-3 fw-bold ls-tight">
-                  The best offer <br />
-                  <span className="text-primary">for your business</span>
+                  <br />
+                  <span className="text-primary">Pet-Matcher</span>
                 </h1>
                 <p style={{ color: "hsl(217, 10%, 50.8%)" }}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet, itaque accusantium odio, soluta, corrupti aliquam
-                  quibusdam tempora at cupiditate quis eum maiores libero
-                  veritatis? Dicta facilis sint aliquid ipsum atque?
+                Discover your perfect canine companion with our innovative 
+                app that combines OpenAI's powerful language model and the Petfinder
+                 API. Take a quick test to provide insights into your lifestyle,
+                  home, and preferences, and receive top dog breed choices tailored just 
+                  for you. Explore real-time access to Petfinder's database of adoptable dogs in 
+                  your area and find your forever furry friend. Embrace the future of pet adoption 
+                  with our AI-powered app and discover the paw-fect match for a lifetime of love and happiness. 
                 </p>
               </div>
 
@@ -174,3 +177,7 @@ const Signup = () => {
 };
 
 export default Signup;
+
+                
+
+               
