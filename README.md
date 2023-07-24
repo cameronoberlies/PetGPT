@@ -17,7 +17,7 @@ The Perfect Dog Breed Matcher App is a web application that helps users find the
 - Bootstrap: A front-end framework for building responsive websites and applications.
 - Node.js: A server-side JavaScript runtime environment.
 - Express: A web application framework for Node.js used to build the server-side of the application.
-
+- Stripe:  Payment platform
 ## Features
 
 - User Registration and Authentication: Users can create accounts and log in securely using JWT.
@@ -25,6 +25,7 @@ The Perfect Dog Breed Matcher App is a web application that helps users find the
 - Dog Breed Recommendations: Based on the test results, the app suggests dog breeds that match the user's preferences.
 - Petfinder Integration: The app uses the Petfinder API to fetch data on dogs available for adoption in the user's area that match their preferences.
 - Favorites List: Users can create a favorites list of dog breeds they are interested in.
+-  Stripe: We've implemented Stripe Payment Links. With a simple click, you can securely contribute to our cause without the need for a lengthy checkout. 
 
 ## Setup Instructions
 
