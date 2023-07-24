@@ -59,6 +59,9 @@ The Perfect Dog Breed Matcher App is a web application that helps users find the
 - Add filters for more specific dog breed search options.
 - Improve the user interface and design for a better user experience.
 
+## Contributors
+James Pierce, Valerie Guerra, Sophia Perez, Cameron Oberlies and Riven Loya.
+
 ## Contributions
 
 Contributions to this project are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
