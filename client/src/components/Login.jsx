@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, RouterLink } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
+import '../test.css';
 
 import Auth from "../utils/auth";
 
@@ -38,7 +39,16 @@ const Login = (props) => {
   };
   return (
     <>
-      {/* Pills content */}
+       <div
+       className="login-container"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+        {/* Pills content */}
       <div className="tab-content">
         <div
           className="tab-pane fade show active"
@@ -55,7 +65,7 @@ const Login = (props) => {
             ) : (
               <form onSubmit={handleFormSubmit}>
                 {/* Email input */}
-                <div className="form-outline mb-4">
+                <div className="form-outline mb-4 small-input">
                   <input 
                    type="email"
                    id="loginName" 
@@ -70,7 +80,7 @@ const Login = (props) => {
                 </div>
 
                 {/* Password input */}
-                <div className="form-outline mb-4">
+                <div className="form-outline mb-4 small-input">
                   <input
                     type="password"
                     id="loginPassword"
@@ -90,7 +100,7 @@ const Login = (props) => {
                    
                   </div>
 
-                  <div className="col-md-6 d-flex justify-content-center">
+                  <div>
                     {/* Simple link */}
                     <a href="#!">Forgot password?</a>
                   </div>
@@ -99,7 +109,7 @@ const Login = (props) => {
                 {/* Submit button */}
                 <button
                   type="submit"
-                  className="btn btn-primary btn-block mb-4"
+                  className="btn btn-primary btn-block mb-4 small-input"
                   
                 >
                   < a href="/test">Sign in</a> 
@@ -123,6 +133,7 @@ const Login = (props) => {
         {/* ... */}
       </div>
       {/* Pills content */}
+        </div>
     </>
   );
 };
