@@ -87,14 +87,14 @@ function Profile () {
           borderRadius="lg"
           textAlign="left"
           mt={10}
-        >{Auth.getProfile().data.email}
+        >Email: {Auth.getProfile().data.email}
           <Text
             fontSize="4xl"
             fontWeight="bold"
             color="gray.800"
             _dark={{ color: "white" }}
           >
-          {Auth.getProfile().data.username}
+          Username: {Auth.getProfile().data.username}
           </Text>
           <HStack spacing={3} color="gray.800" _dark={{ color: "gray.200" }}>
           <FaEnvelope size={20} />
