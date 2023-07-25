@@ -1,3 +1,4 @@
+// Importing React and Portfolios.
 import React from "react";
 import { Box, Flex, HStack, Image, Text, Button } from "@chakra-ui/react";
 import { FaEnvelope} from "react-icons/fa";
