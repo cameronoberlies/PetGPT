@@ -1,3 +1,4 @@
+// Importing React, Router links, Chakra UI and other technologies.
 import React, { useRef } from "react";
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import {
