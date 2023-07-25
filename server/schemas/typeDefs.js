@@ -20,7 +20,6 @@ const typeDefs = gql`
         users: [User] !
         user(userId: ID): User
         me: User
-        getUserFavorites(userId: ID!): User
     }
 
     type Mutation {
@@ -28,9 +27,9 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!, zipcode: String!): Auth
         login(email: String!, password: String!): Auth
 
-        addFavorite(userId: ID!, favorite: String!): User!
+        addFavorite(userId: ID!, favorite: String!): User
         removeUser: User
-        removeFavorite(userId: ID!, favorite: String!): User!
+        removeFavorite(favorite: String!): User
 
     }
 `;
