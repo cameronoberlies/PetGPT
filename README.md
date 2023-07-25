@@ -4,7 +4,8 @@
 
 
 
-The Perfect Dog Breed Matcher App is a web application that helps users find their perfect dog breed match by taking a six-question test. The app utilizes the OpenAI API for generating personalized responses based on the user's preferences. Additionally, it leverages the Petfinder API to display dogs available for adoption in the user's area that match their preferences.
+The Perfect Dog Breed Matcher App is a web application that helps users find their perfect dog breed match by taking a six-question test. The app utilizes the OpenAI API for generating personalized responses based on the user's preferences. Additionally, it leverages the Petfinder API to display dogs available for adoption in the user's area that match their preferences. With a 
+GPT-3.5 language model for composing your ideal match.
 
 ## Technologies Used
 
@@ -58,6 +59,9 @@ The Perfect Dog Breed Matcher App is a web application that helps users find the
 - Allow users to save their favorite dogs for future reference.
 - Add filters for more specific dog breed search options.
 - Improve the user interface and design for a better user experience.
+- Add a variety of different kind of pets for matching!
+- We hope to have sponsors in the future, such as breeders, pet services, brands, and ambassadors.
+- Add various pets services, such as: Pet care, pet watching, walking servies, puppy play dates and social meets.
 
 ## Contributors
 James Pierce, Valerie Guerra, Sophia Perez, Cameron Oberlies and Riven Loya.

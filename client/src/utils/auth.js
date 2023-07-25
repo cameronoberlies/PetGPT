@@ -1,3 +1,4 @@
+// Importing jwt-decode for user auth.
 import decode from 'jwt-decode';
 
 class AuthService {
