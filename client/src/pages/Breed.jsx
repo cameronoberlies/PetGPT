@@ -5,6 +5,7 @@ import Chat from '../components/ai';
 import '../test.css';
 import { useFavorites } from "../components/FavoritesContext";
 import { useLocation } from "react-router-dom";
+//List of all dog breeds in Petfinder
 export const dogBreeds = [
   "Akbash",
   "Akita",
@@ -273,6 +274,7 @@ export const dogBreeds = [
   "Yorkshire-Terrier",
 ];
 
+//Favorites displayed in profile
 const Breeds = () => {
 
   const location = useLocation();
@@ -299,8 +301,7 @@ const Breeds = () => {
 );
 
 
-  
-
+  //Breeds search bar and list of all breeds in Petfinder
   return (
     <div className="breeds-container">
       <div className="dog-breed-list">
@@ -330,6 +331,7 @@ const Breeds = () => {
                     onChange={() => handleCheckboxChange(breed)}
                   />
                   <a
+                  //Link to petfinder breed descriptions
                     href={`https://www.petfinder.com/dogs-and-puppies/breeds/${formattedBreed}`}
                     target="petfinder"
                     rel="link to petfinder"
