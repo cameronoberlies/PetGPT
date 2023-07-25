@@ -18,6 +18,7 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Results from './pages/Results';
 import Donate from "./components/Donate";
+import { FavoritesProvider } from './components/FavoritesContext';
 
 
 
@@ -46,7 +47,7 @@ function App() {
     <>
     
     <ApolloProvider client={client}>
-      
+    <FavoritesProvider>
       <BrowserRouter>
       
         <Header />
@@ -63,6 +64,7 @@ function App() {
         </Routes>
         
       </BrowserRouter>
+      </FavoritesProvider>
       </ApolloProvider>
       
     </>

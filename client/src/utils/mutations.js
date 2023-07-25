@@ -44,4 +44,5 @@ export const REMOVE_FAVORITE = gql`
             favorites
         }
     }
+
 `;
