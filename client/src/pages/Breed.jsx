@@ -1,12 +1,11 @@
-// Importing React, Chakra UI and Favorites.
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Input } from '@chakra-ui/react';
 import Heart from 'react-heart';
 import Chat from '../components/ai';
 import '../test.css';
 import { useFavorites } from "../components/FavoritesContext";
 import { useLocation } from "react-router-dom";
-//List of all dog breeds in Petfinder
+import {Spinner} from 'react-bootstrap';
 export const dogBreeds = [
   "Akbash",
   "Akita",
@@ -284,6 +283,15 @@ const Breeds = () => {
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   const [checkedBreeds, setCheckedBreeds] = useState([]);
   const [searchQuery, setSearchQuery] = useState(""); //Change here
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+   
+    setTimeout(() => {
+      setLoading(false); 
+    }, 2000); 
+
+    
+  }, []);
 
 
 
@@ -347,11 +355,20 @@ const Breeds = () => {
         {console.log(favorites)}
       </div>
  
-<div className="chat-container">
-        <div className="final-results">
-          <Chat {...answers} />
-        </div>
+      <div className="chat-container">
+        {loading ? (
+          
+          <div className="text-center mt-5">
+            <Spinner animation="border" variant="primary" />
+          </div>
+        ) : (
+         
+          <div className="final-results">
+            <Chat {...answers} />
+          </div>
+        )}
       </div>
+
       
     </div>
     

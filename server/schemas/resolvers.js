@@ -40,20 +40,22 @@ const resolvers = {
         },
 
         addFavorite: async (parent, { userId, favorite }, context) => {
-            if(context.user) {
-                return User.findOneAndUpdate(
-                    { _id: userId },
-                    {
-                        $addToSet: { favorites: favorite },
-                    },
-                    {
-                        new: true,
-                        runValidators: true,
-                    }
+            if (context.user) {
+              try {
+                const updatedUser = await User.findByIdAndUpdate(
+                  userId,
+                  { $addToSet: { favorites: favorite } },
+                  { new: true, runValidators: true }
                 );
+      
+                return updatedUser;
+              } catch (error) {
+                throw new Error('Failed to add favorite.');
+              }
+            } else {
+              throw new AuthenticationError('You need to be logged in!');
             }
-            throw new AuthenticationError('You need to be logged in!');
-        },
+          },
 
         removeUser: async (parent, args, context) => {
             if(context.user) {
@@ -61,18 +63,27 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-        removeFavorite: async (parent, { favorite }, context) => {
-            if(context.user) {
-                return User.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $pull: { favorites: favorite } },
-                    { new: true }
-                )
+        removeFavorite: async (parent, { userId, favorite }, context) => {
+            if (context.user) {
+              try {
+                const updatedUser = await User.findByIdAndUpdate(
+                  userId,
+                  { $pull: { favorites: favorite } },
+                  { new: true, runValidators: true }
+                );
+      
+                return updatedUser;
+              } catch (error) {
+                throw new Error('Failed to remove favorite.');
+              }
+            } else {
+              throw new AuthenticationError('You need to be logged in!');
             }
-            throw new AuthenticationError('You need to be logged in!');
+          },
         },
+      };
 
-    },
-};
+    
+
 
 module.exports = resolvers;

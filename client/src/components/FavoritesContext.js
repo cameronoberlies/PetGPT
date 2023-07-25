@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState } from 'react';
 const FavoritesContext = createContext();
 
 export function useFavorites() {
+  console.log("Testing FavoritesContext.js")
   return useContext(FavoritesContext);
 }
 
@@ -11,6 +12,7 @@ export function FavoritesProvider({ children }) {
 
   const addFavorite = (breed) => {
     setFavorites((prevFavorites) => [...prevFavorites, breed]);
+    
   };
 
   const removeFavorite = (breed) => {

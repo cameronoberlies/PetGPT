@@ -27,9 +27,9 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!, zipcode: String!): Auth
         login(email: String!, password: String!): Auth
 
-        addFavorite(userId: ID!, favorite: String!): User
+        addFavorite(userId: ID!, favorite: String!): User!
         removeUser: User
-        removeFavorite(favorite: String!): User
+        removeFavorite(userId: ID!, favorite: String!): User!
 
     }
 `;
