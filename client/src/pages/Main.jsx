@@ -68,6 +68,16 @@ const Main = () => {
         shadow="xl"
       >
         <Box textAlign={{ lg: "center" }}>
+        <chakra.p
+            mt={2}
+            fontSize={{ base: "5xl", sm: "6xl" }}
+            lineHeight="8"
+            fontWeight="extrabold"
+            letterSpacing="tight"
+            _light={{ color: "gray.900" }}
+          >
+            PetGPT
+          </chakra.p>
           <chakra.p
             mt={2}
             fontSize={{ base: "3xl", sm: "4xl" }}

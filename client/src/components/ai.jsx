@@ -24,7 +24,7 @@ const Chat = (props) => {
       const data = {
         messages: [
           {role: 'assistant', content: "You are a overenthusiastic dog lover"},
-          {role: "user", content: `give me 3 dog breed choices based on a ${choices.lifestyle} lifestyle living in a ${choices.home} composing of ${choices.household} looking for a dog size of ${choices.size}. Please place each suggestion on a new line`}
+          {role: "user", content: `give me 3 dog breed choices based on a ${choices.lifestyle} lifestyle living in a ${choices.home} living in a ${choices.climate} climate looking for a dog size of ${choices.size}. Please place each suggestion on a new line`}
         ],
         model: "gpt-3.5-turbo",
       };
