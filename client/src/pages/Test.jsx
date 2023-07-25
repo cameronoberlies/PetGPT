@@ -30,15 +30,15 @@ const [showResults, setShowResults] = useState(false);
         { id: 'farm', text: 'Rural/Farm' },
       ],
     },
-    {
-      id: 'household',
-      text: 'What is your household composition?',
-      options: [
-        { id: 'single', text: 'Single' },
-        { id: 'couple', text: 'Couple' },
-        { id: 'family', text: 'Family with Children' },
-      ],
-    },
+    // {
+    //   id: 'household',
+    //   text: 'What is your household composition?',
+    //   options: [
+    //     { id: 'single', text: 'Single' },
+    //     { id: 'couple', text: 'Couple' },
+    //     { id: 'family', text: 'Family with Children' },
+    //   ],
+    // },
     {
       id: 'size',
       text: 'What is your dog size preference?',
@@ -57,15 +57,15 @@ const [showResults, setShowResults] = useState(false);
     //     { id: 'high', text: 'High' },
     //   ],
     // },
-    // {
-    //   id: 'climate',
-    //   text: 'What is the climate where you live?',
-    //   options: [
-    //     { id: 'hot', text: 'Hot' },
-    //     { id: 'mild', text: 'Mild' },
-    //     { id: 'cold', text: 'Cold' },
-    //   ],
-    // },
+    {
+      id: 'climate',
+      text: 'What is the climate where you live?',
+      options: [
+        { id: 'hot', text: 'Hot' },
+        { id: 'mild', text: 'Mild' },
+        { id: 'cold', text: 'Cold' },
+      ],
+    },
   ];
 
   const optionClicked = (questionId, optionId) => {

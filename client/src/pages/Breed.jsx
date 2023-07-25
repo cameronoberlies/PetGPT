@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Input } from '@chakra-ui/react';
-import Heart from 'react-heart';
+//import Heart from 'react-heart';
 import Chat from '../components/ai';
 import '../test.css';
 import { useFavorites } from "../components/FavoritesContext";
