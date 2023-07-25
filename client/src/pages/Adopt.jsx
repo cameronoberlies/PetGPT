@@ -1,11 +1,11 @@
-
+// Imports React, axios, and get0Auth.
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import getOAuth from "../utils/getOAuth";
 import { Box, Button, Stack, Input, Flex, Link, Image, chakra, Wrap, WrapItem } from '@chakra-ui/react';
 import { dogBreeds } from './Breed';
 
-
+// Linking petfinder and Adopt functionality.
 const Adopt = () => {
   const [breed, setBreed] = useState('');
   const [zipcode, setZipcode] = useState('');

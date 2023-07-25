@@ -1,3 +1,4 @@
+// Importing React, Chakra UI and Favorites.
 import React, { useState } from "react";
 import { Button, Input } from '@chakra-ui/react';
 import Heart from 'react-heart';

@@ -1,3 +1,4 @@
+// Importing React and Chat.
 import React, { useState } from 'react';
 import Chat from '../components/ai';
 
