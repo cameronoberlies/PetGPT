@@ -1,33 +1,49 @@
-import React, { createContext, useContext, useState } from 'react';
+import { useState, createContext, useContext, useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import { GET_USER_FAVORITES } from "../utils/queries"; // replace with your actual query
+import Auth from "../utils/auth"; // replace with your actual Auth import
 
 const FavoritesContext = createContext();
 
-export function useFavorites() {
-  return useContext(FavoritesContext);
-}
+const FavoritesProvider = ({ children }) => {
+  const [myFavorites, setMyFavorites] = useState([]);
+  const token = Auth.getToken();
+  const userProfile = token ? Auth.getProfile() : null;
+  const userId = userProfile?.data?._id || null;
 
-export function FavoritesProvider({ children }) {
-  const [favorites, setFavorites] = useState([]);
+  const { loading, error, data } = useQuery(GET_USER_FAVORITES, {
+    variables: { userId },
+  });
+
+  useEffect(() => {
+    if (!loading && !error && data && data.getUserFavorites) {
+      setMyFavorites(data.getUserFavorites.favorites);
+    }
+  }, [loading, error, data]);
 
   const addFavorite = (breed) => {
-    setFavorites((prevFavorites) => [...prevFavorites, breed]);
+    setMyFavorites((prevFavorites) => [...prevFavorites, breed]);
   };
 
   const removeFavorite = (breed) => {
-    setFavorites((prevFavorites) => prevFavorites.filter((item) => item !== breed));
+    setMyFavorites((prevFavorites) =>
+      prevFavorites.filter((fav) => fav !== breed)
+    );
   };
 
   const clearFavorites = () => {
-    setFavorites([]);
+    setMyFavorites([]);
   };
 
   return (
     <FavoritesContext.Provider
-      value={{ favorites, addFavorite, removeFavorite, clearFavorites }}
+      value={{ myFavorites, addFavorite, removeFavorite, clearFavorites }}
     >
       {children}
     </FavoritesContext.Provider>
   );
-}
+};
 
-//Delete comment later, need to change something to push to heroku
+const useFavorites = () => useContext(FavoritesContext);
+
+export { FavoritesProvider, useFavorites };

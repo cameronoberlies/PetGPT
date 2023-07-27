@@ -18,6 +18,9 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
+        getUserFavorites: async (parent, { userId }, context) => {
+            return User.findById(userId);
+          },
     },
 
     Mutation: {

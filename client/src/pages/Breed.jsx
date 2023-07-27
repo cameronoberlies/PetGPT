@@ -3,9 +3,12 @@ import { Button, Input } from '@chakra-ui/react';
 import Heart from 'react-heart';
 import Chat from '../components/ai';
 import '../test.css';
-import { useFavorites } from "../components/FavoritesContext";
+import { useFavorites, FavoritesProvider } from "../components/FavoritesContext";
 import { useLocation } from "react-router-dom";
 import {Spinner} from 'react-bootstrap';
+import {useMutation} from '@apollo/client';
+import {ADD_FAVORITE} from '../utils/mutations';
+import Auth from "../utils/auth";
 export const dogBreeds = [
   "Akbash",
   "Akita",
@@ -274,16 +277,22 @@ export const dogBreeds = [
   "Yorkshire-Terrier",
 ];
 
-const Breeds = () => {
+//Favorites displayed in profile
+const Breed = () => {
 
   const location = useLocation();
   const answers = location.state?.answers || {};
   
-  const { favorites, addFavorite, removeFavorite } = useFavorites();
+  // const { favorites, addFavorite, removeFavorite } = useFavorites();
   const [checkedBreeds, setCheckedBreeds] = useState([]);
   const [searchQuery, setSearchQuery] = useState(""); //Change here
   const [loading, setLoading] = useState(true);
-
+  const [tempCheckedBreeds, setTempCheckedBreeds] = useState([]);
+  const [addFavoriteMutation] = useMutation(ADD_FAVORITE);
+  const [username, setUsername] = useState("");
+  const [myFavorites, setMyFavorites] = useState("");
+  const { addFavorite } = useFavorites();
+  
   useEffect(() => {
    
     setTimeout(() => {
@@ -293,35 +302,111 @@ const Breeds = () => {
     
   }, []);
 
+
+
+  // const handleCheckboxChange = (breed) => {
+  //   if (checkedBreeds.includes(breed)) {
+  //     setCheckedBreeds(checkedBreeds.filter((item) => item !== breed));
+  //     removeFavorite(breed);
+  //   } else {
+  //     setCheckedBreeds([...checkedBreeds, breed]);
+  //     addFavorite(breed);
+  //   }
+  // };
+
   const handleCheckboxChange = (breed) => {
-    if (checkedBreeds.includes(breed)) {
-      setCheckedBreeds(checkedBreeds.filter((item) => item !== breed));
-      removeFavorite(breed);
+    if (tempCheckedBreeds.includes(breed)) {
+      setTempCheckedBreeds(tempCheckedBreeds.filter((item) => item !== breed));
     } else {
-      setCheckedBreeds([...checkedBreeds, breed]);
-      addFavorite(breed);
+      setTempCheckedBreeds([...tempCheckedBreeds, breed]);
     }
   };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (tempCheckedBreeds.length === 0) {
+        return;
+    }
+    const userId = Auth.getProfile().data._id;
+    for (const breed of tempCheckedBreeds) {
+        try {
+            const { data } = await addFavoriteMutation({
+                variables: {
+                    userId,
+                    favorite: breed,
+                },
+            });
+            addFavorite(breed);
+        } catch (err) {
+            console.error(err);
+        }
+    }
+    setTempCheckedBreeds([]);
+};
+
+  // const handleSubmit = () => {
+  
+  //   if (tempCheckedBreeds.length === 0) {
+      
+  //     return;
+  //   }
+  
+  //   const favoriteBreeds = tempCheckedBreeds.map((breed) => ({ breed }));
+  //   console.log("Calling addFavorite mutation with variables:", {
+  //     userId: Auth.getProfile().data._id,
+  //     favorites: favoriteBreeds,
+  //   });
+    
+  
+  //   addFavorite({
+  //     variables: {
+  //       userId: Auth.getProfile().data._id,
+  //       favorites: favoriteBreeds,
+  //     },
+  //   })
+  //     .then((data) => {
+  //       console.log(data);
+       
+  //       setMyFavorites(data.addFavorite.favorites);
+  //       console.log(setMyFavorites)
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //       console.log(Auth.getProfile().data._id)
+  //       console.log(Auth.getProfile())
+  //       console.log(myFavorites)
+  //       console.log(favoriteBreeds)
+        
+  //     });
+    
+  //   setTempCheckedBreeds([]);
+  // };
 
   const filteredBreeds = dogBreeds.filter((breed) =>
   breed.toLowerCase().includes(searchQuery.toLowerCase())
 );
 
 
-  
-
+  //Breeds search bar and list of all breeds in Petfinder
   return (
     <div className="breeds-container">
       <div className="dog-breed-list">
         <h2>Dog Breeds</h2>
         <p>Click for more information</p>
+      
 
         <Input
           type="text"
           placeholder="Search for a breed..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-        />
+        />  <Button 
+        onClick={handleSubmit}
+        
+        margin={"10px"}
+        
+        >
+        Submit</Button>
 
 
         <ul className="dog-breed-ul">
@@ -335,10 +420,11 @@ const Breeds = () => {
                 <label>
                   <input
                     type="checkbox"
-                    checked={checkedBreeds.includes(breed)}
+                    checked={tempCheckedBreeds.includes(breed)}
                     onChange={() => handleCheckboxChange(breed)}
                   />
                   <a
+                  //Link to petfinder breed descriptions
                     href={`https://www.petfinder.com/dogs-and-puppies/breeds/${formattedBreed}`}
                     target="petfinder"
                     rel="link to petfinder"
@@ -350,7 +436,7 @@ const Breeds = () => {
             );
           })}
         </ul>
-        {console.log(favorites)}
+        {console.log(myFavorites)}
       </div>
  
       <div className="chat-container">
@@ -366,6 +452,7 @@ const Breeds = () => {
           </div>
         )}
       </div>
+
       
     </div>
     
@@ -373,4 +460,11 @@ const Breeds = () => {
   );
 };
 
-export default Breeds;
+export default Breed;
+
+
+
+
+
+
+
