@@ -19,6 +19,7 @@ import {
   useColorMode,
   SimpleGrid,
   Stack,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 
 //import { useViewportScroll } from "framer-motion";
@@ -48,12 +49,11 @@ const Header = () => {
     event.preventDefault();
     Auth.logout();
   };
-//   const { scrollY } = useViewportScroll();
-//   React.useEffect(() => {
-//     return scrollY.onChange(() => setY(scrollY.get()));
-//   }, [scrollY]);
+
   const cl = useColorModeValue("gray.800", "white");
   const mobileNav = useDisclosure();
+
+
 
   const Section = (props) => {
     const ic = useColorModeValue("brand.600", "brand.50");
@@ -127,7 +127,30 @@ const Header = () => {
         justifySelf="self-start"
         onClick={mobileNav.onClose}
       />
-   
+   <Button as={RouterLink} to="/" variant="ghost" fontSize="md">
+        Home
+      </Button>
+      <Button as={RouterLink} to="/test" variant="ghost" fontSize="md">
+        Test
+      </Button>
+      <Button as={RouterLink} to="/breed" variant="ghost" fontSize="md">
+        Breed
+      </Button>
+      <Button as={RouterLink} to="/adopt" variant="ghost" fontSize="md">
+        Adopt
+      </Button>
+      <Button as={RouterLink} to="/profile" variant="ghost" fontSize="md">
+        My Profile
+      </Button>
+      <Button
+        as="a"
+        href="https://buy.stripe.com/test_aEU5lH4DEdA4gaQ8ww"
+        target="_blank"
+        variant="ghost"
+        fontSize="md"
+      >
+        Donate
+      </Button>
     </VStack>
   );
   return (
