@@ -70,6 +70,7 @@ const Main = () => {
         <Box textAlign={{ lg: "center" }}>
         <chakra.p
             mt={2}
+            mb={10}
             fontSize={{ base: "5xl", sm: "6xl" }}
             lineHeight="8"
             fontWeight="extrabold"

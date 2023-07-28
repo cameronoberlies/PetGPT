@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./test.css";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import "./App.css";
 import {
   ApolloClient,
@@ -19,6 +21,7 @@ import Login from "./components/Login";
 import Results from './pages/Results';
 import Donate from "./components/Donate";
 import { FavoritesProvider } from "./components/FavoritesContext";
+import { AuthProvider } from "./components/AuthContext";
 
 
 
@@ -47,10 +50,12 @@ function App() {
     <>
     
     <ApolloProvider client={client}>
+      <AuthProvider>
       <FavoritesProvider>
       <BrowserRouter>
       
         <Header />
+        <ToastContainer autoClose={7000} />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/signup" element={<Signup />} />
@@ -61,10 +66,12 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/results" element={<Results />} />
           <Route path="/donate" element={<Donate />} />
+          
         </Routes>
         
       </BrowserRouter>
       </FavoritesProvider>
+      </AuthProvider>
       </ApolloProvider>
       
     </>

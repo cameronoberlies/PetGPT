@@ -33,7 +33,7 @@ export const QUERY_ME = gql`
 `;
 
 export const GET_USER_FAVORITES = gql`
-  query GetUserFavorites($userId: ID!) {
+  query getUserFavorites($userId: ID!) {
     getUserFavorites(userId: $userId) {
       favorites
     }

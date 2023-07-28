@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import '../test.css';
 import { useNavigate } from 'react-router-dom';
 import Breeds from './Breed';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Test() {
 const [showResults, setShowResults] = useState(false);
@@ -101,6 +103,15 @@ const [showResults, setShowResults] = useState(false);
   const navigate = useNavigate();
   const goToResultsPage = () => {
     navigate('/breed', { state: { answers } });
+    toast.success('Test submitted!', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   }
 
   return (
@@ -164,15 +175,7 @@ const [showResults, setShowResults] = useState(false);
         </div>
       </div>
 {showResults && <Breeds answers={answers} />}
-      {/* {showResults && (
-        <div className="final-results">
-          <Chat {...answers} />
-          <button className="btn btn-primary d-flex justify-content-center mx-auto"  onClick={() => restartSurvey()}>
-            Restart survey
-          </button> 
-        </div>
-      )} 
-       <Chat {...choices} /> */}
+      
     </>
   );
 }

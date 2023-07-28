@@ -1,6 +1,8 @@
 // Importing React, Router links, Chakra UI and other technologies.
-import React, { useRef } from "react";
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import React, { useRef, useContext } from "react";
+import { Link as RouterLink, useLocation } from "react-router-dom";
+import { AuthContext } from "../components/AuthContext";
+
 import {
   chakra,
   Link,
@@ -17,19 +19,15 @@ import {
   VStack,
   Button,
   useColorMode,
-  SimpleGrid,
-  Stack,
-  useBreakpointValue,
 } from "@chakra-ui/react";
 
 //import { useViewportScroll } from "framer-motion";
 
-import { IoIosArrowDown } from "react-icons/io";
-import { AiFillHome, AiOutlineInbox, AiOutlineMenu } from "react-icons/ai";
-import { BsFillCameraVideoFill } from "react-icons/bs";
+import { AiOutlineMenu } from "react-icons/ai";
+
 import { FaMoon, FaSun } from "react-icons/fa";
 import { Logo } from "@choc-ui/logo";
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
 const Header = () => {
   const { toggleColorMode: toggleMode } = useColorMode();
@@ -42,68 +40,65 @@ const Header = () => {
   const location = useLocation();
   const activeColor = useColorModeValue("white", "white");
   const inactiveColor = useColorModeValue("gray.500", "gray.200");
+  const { loggedIn, logout } = useContext(AuthContext);
   const isActive = (path) => {
     return location.pathname === path;
   };
-  const logout = (event) => {
-    event.preventDefault();
-    Auth.logout();
-  };
+
+
+
+  // const logout = (event) => {
+  //   event.preventDefault();
+  //   Auth.logout();
+  // };
 
   const cl = useColorModeValue("gray.800", "white");
   const mobileNav = useDisclosure();
 
-
-
-  const Section = (props) => {
-    const ic = useColorModeValue("brand.600", "brand.50");
-    const hbg = useColorModeValue("gray.50", "brand.400");
-    const tcl = useColorModeValue("gray.900", "gray.50");
-    const dcl = useColorModeValue("gray.500", "gray.50");
-    return (
-      <Link
-        m={-3}
-        p={3}
-        display="flex"
-        alignItems="start"
-        rounded="lg"
-        _hover={{ bg: hbg }}
-      >
-        <chakra.svg
-          flexShrink={0}
-          h={6}
-          w={6}
-          color={ic}
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          aria-hidden="true"
-        >
-          {props.icon}
-        </chakra.svg>
-        <Box ml={4}>
-          <chakra.p fontSize="sm" fontWeight="700" color={tcl}>
-            {props.title}
-          </chakra.p>
-          <chakra.p mt={1} fontSize="sm" color={dcl}>
-            {props.children}
-          </chakra.p>
-        </Box>
-      </Link>
-    );
-  };
+  // const Section = (props) => {
+  //   const ic = useColorModeValue("brand.600", "brand.50");
+  //   const hbg = useColorModeValue("gray.50", "brand.400");
+  //   const tcl = useColorModeValue("gray.900", "gray.50");
+  //   const dcl = useColorModeValue("gray.500", "gray.50");
+  //   return (
+  //     <Link
+  //       m={-3}
+  //       p={3}
+  //       display="flex"
+  //       alignItems="start"
+  //       rounded="lg"
+  //       _hover={{ bg: hbg }}
+  //     >
+  //       <chakra.svg
+  //         flexShrink={0}
+  //         h={6}
+  //         w={6}
+  //         color={ic}
+  //         xmlns="http://www.w3.org/2000/svg"
+  //         fill="none"
+  //         viewBox="0 0 24 24"
+  //         stroke="currentColor"
+  //         aria-hidden="true"
+  //       >
+  //         {props.icon}
+  //       </chakra.svg>
+  //       <Box ml={4}>
+  //         <chakra.p fontSize="sm" fontWeight="700" color={tcl}>
+  //           {props.title}
+  //         </chakra.p>
+  //         <chakra.p mt={1} fontSize="sm" color={dcl}>
+  //           {props.children}
+  //         </chakra.p>
+  //       </Box>
+  //     </Link>
+  //   );
+  // };
 
   const Features = (props) => {
     const hbg = useColorModeValue("gray.50", "brand.400");
     const hbgh = useColorModeValue("gray.100", "brand.500");
     const tcl = useColorModeValue("gray.900", "gray.50");
-    return (
-      <React.Fragment>
-      
-      
-      </React.Fragment>
-    );
+    return <React.Fragment></React.Fragment>;
   };
 
   const MobileNavContent = (
@@ -127,7 +122,7 @@ const Header = () => {
         justifySelf="self-start"
         onClick={mobileNav.onClose}
       />
-   <Button as={RouterLink} to="/" variant="ghost" fontSize="md">
+      <Button as={RouterLink} to="/" variant="ghost" fontSize="md">
         Home
       </Button>
       <Button as={RouterLink} to="/test" variant="ghost" fontSize="md">
@@ -181,7 +176,7 @@ const Header = () => {
               </Link>
             </Flex>
             <Flex>
-              <HStack spacing="5" display={{ base: "none", md: "flex" }} >
+              <HStack spacing="5" display={{ base: "none", md: "flex" }}>
                 <Popover>
                   <PopoverTrigger>
                     <Button
@@ -194,7 +189,7 @@ const Header = () => {
                       fontSize="md"
                       _hover={{ color: cl }}
                       _focus={{ boxShadow: "none" }}
-                    //   rightIcon={<IoIosArrowDown />}
+                      //   rightIcon={<IoIosArrowDown />}
                     >
                       Home
                     </Button>
@@ -209,20 +204,20 @@ const Header = () => {
                 </Popover>
                 {/* {isSignedIn ? null : ( // Conditionally render the button if isSignedIn is false
           <li> */}
-            <Button
-              as={RouterLink}
-              to="/test"
-              bg={isActive("/test") ? activeColor : "transparent"}
-              color={isActive("/test") ? "black" : inactiveColor}
-              display="inline-flex"
-              alignItems="center"
-              fontSize="md"
-              _hover={{ color: cl }}
-              _focus={{ boxShadow: "none" }}
-            >
-              Test
-            </Button>
-          {/* </li>
+                <Button
+                  as={RouterLink}
+                  to="/test"
+                  bg={isActive("/test") ? activeColor : "transparent"}
+                  color={isActive("/test") ? "black" : inactiveColor}
+                  display="inline-flex"
+                  alignItems="center"
+                  fontSize="md"
+                  _hover={{ color: cl }}
+                  _focus={{ boxShadow: "none" }}
+                >
+                  Test
+                </Button>
+                {/* </li>
         )} */}
                 <Button
                   as={RouterLink}
@@ -235,7 +230,7 @@ const Header = () => {
                   _hover={{ color: cl }}
                   _focus={{ boxShadow: "none" }}
                 >
-                  Breed 
+                  Breed
                 </Button>
                 <Button
                   as={RouterLink}
@@ -248,7 +243,7 @@ const Header = () => {
                   _hover={{ color: cl }}
                   _focus={{ boxShadow: "none" }}
                 >
-                  Adopt 
+                  Adopt
                 </Button>
                 <Button
                   as={RouterLink}
@@ -277,52 +272,63 @@ const Header = () => {
                 >
                   Donate
                 </Button>
-              
               </HStack>
             </Flex>
             <Flex justify="flex-end" align="center" color="gray.400">
-            <div>
-          {Auth.loggedIn() ? (
-            <>
-              <span>Hey there, {Auth.getProfile().data.username}!</span>
-              <button className="btn btn-sm btn-light m-2" onClick={logout}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-            <HStack spacing="5" display="flex">
-               <Link to="/login">
-                <Button as={RouterLink}
-                      to="/login"
-                      bg={isActive("/") ? activeColor : "transparent"}
-                      color={isActive("/") ? "black" : inactiveColor}
-                      display="inline-flex"
-                      alignItems="center"
-                      fontSize="md"
-                      _hover={{ color: cl }}
-                      _focus={{ boxShadow: "none" }}>
-                  Sign in
-                </Button>
-                  </Link>
-                  <Link to="/signup">
-               <Button as={RouterLink}
-                      to="/signup"
-                      bg={isActive("/") ? activeColor : "transparent"}
-                      color={isActive("/") ? "black" : inactiveColor}
-                      display="inline-flex"
-                      alignItems="center"
-                      fontSize="md"
-                      _hover={{ color: cl }}
-                      _focus={{ boxShadow: "none" }}>
-                  Sign up
-                </Button>
-                </Link>
-                </HStack>
-            </>
-          )}
-        </div>
-             
+              <div>
+                {Auth.loggedIn() ? (
+                  <>
+                    <span>
+                      Hey there,
+                      {Auth.getProfile()
+                        ? Auth.getProfile().data.username
+                        : "User"}
+                    </span>{" "}
+                    <button
+                      className="btn btn-sm btn-light m-2"
+                      onClick={logout}
+                    >
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <HStack spacing="5" display="flex">
+                      <Link to="/login">
+                        <Button
+                          as={RouterLink}
+                          to="/login"
+                          bg={isActive("/") ? activeColor : "transparent"}
+                          color={isActive("/") ? "black" : inactiveColor}
+                          display="inline-flex"
+                          alignItems="center"
+                          fontSize="md"
+                          _hover={{ color: cl }}
+                          _focus={{ boxShadow: "none" }}
+                        >
+                          Login
+                        </Button>
+                      </Link>
+                      <Link to="/sigup">
+                        <Button
+                          as={RouterLink}
+                          to="/signup"
+                          bg={isActive("/") ? activeColor : "transparent"}
+                          color={isActive("/") ? "black" : inactiveColor}
+                          display="inline-flex"
+                          alignItems="center"
+                          fontSize="md"
+                          _hover={{ color: cl }}
+                          _focus={{ boxShadow: "none" }}
+                        >
+                          Sign up
+                        </Button>
+                      </Link>
+                    </HStack>
+                  </>
+                )}
+              </div>
+
               <IconButton
                 size="md"
                 fontSize="lg"
