@@ -1,35 +1,33 @@
 // Importing React and Portfolios.
 import React from "react";
-import { Box, Flex, HStack, Image, Text, Button } from "@chakra-ui/react";
-import { FaEnvelope } from "react-icons/fa";
-import { useQuery, gql } from "@apollo/client";
+import { Box, Flex, HStack, Image, Text, Button, chakra, useColorModeValue} from "@chakra-ui/react";
+import { FaEnvelope, FaTimes } from "react-icons/fa";
+
 import Auth from "../utils/auth";
-import {
-  useFavorites,
-  FavoritesProvider,
-} from "../components/FavoritesContext";
+import {useFavorites,} from "../components/FavoritesContext";
 import { Link } from "react-router-dom";
 
 function Profile() {
-  const { myFavorites } = useFavorites();
+  const { myFavorites, removeFavorite } = useFavorites();
+  const buttonColor = useColorModeValue("black", "white");
 
   console.log("Favorites:", myFavorites);
+  const handleRemoveFavorite = (breed) => {
+    removeFavorite(breed);
+  };
 
   return (
     <div>
       {Auth.loggedIn() ? (
         <>
           <h1>Hello, {Auth.getProfile().data.username}!</h1>
-          <h3>My favorites</h3>
-          <ul>
-            {myFavorites.map((breed) => (
-              <li key={breed}>{breed}</li>
-            ))}
-          </ul>
+        
+          
+        
           <Flex flexDirection="row">
             <Flex
-              bg="#edf3f8"
-              _dark={{ bg: "#3e3e3e" }}
+              // bg="#edf3f8"
+              // _dark={{ bg: "#3e3e3e" }}
               p={50}
               w="full"
               alignItems="center"
@@ -44,6 +42,7 @@ function Profile() {
                 direction="column"
                 alignItems="center"
                 justifyContent="center"
+                w="full"
               >
                 <Box
                   bg="#edf3f8"
@@ -64,8 +63,8 @@ function Profile() {
                 >
                   {" "}
                   <Image
-                    src="https://images.unsplash.com/photo-1623930154261-37f8b293c059?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
-                    // alt="Profile Picture"
+                    src="https://cdn4.vectorstock.com/i/1000x1000/28/63/profile-placeholder-image-gray-silhouette-vector-21542863.jpg"
+                    alt="Profile Picture"
                     borderRadius="full"
                     boxSize="150px"
                     shadow="lg"
@@ -75,6 +74,7 @@ function Profile() {
                     _dark={{ borderColor: "gray.200" }}
                   />
                 </Box>
+                
                 <Box
                   gridColumn="span 8"
                   p={8}
@@ -84,22 +84,55 @@ function Profile() {
                   textAlign="left"
                   mt={10}
                 >
-                  Email: {Auth.getProfile().data.email}
                   <Text
+                    fontSize="2xl"
+                    fontWeight="bold"
+                    color="gray.800"
+                    _dark={{ color: "white" }}
+                  >
+                    Username: {Auth.getProfile().data.username} 
+                    
+                  </Text>
+                  <Text
+                  fontSize="1xl"
+                  fontWeight="bold"
+                  color="gray.800"
+                  _dark={{ color: "white" }}
+                  >
+                  Email: {Auth.getProfile().data.email}
+                  </Text>
+                  
+                  {/* <Text
                     fontSize="4xl"
                     fontWeight="bold"
                     color="gray.800"
                     _dark={{ color: "white" }}
                   >
                     Username: {Auth.getProfile().data.username}
-                  </Text>
+                  </Text> */}
                   <HStack
                     spacing={3}
                     color="gray.800"
                     _dark={{ color: "gray.200" }}
                   >
-                    <FaEnvelope size={20} />
-                    <Text fontSize="lg"></Text>
+                    
+                    <Text>
+                    <ul>
+            {myFavorites.map((breed) => (
+              <li key={breed}>
+                {breed}
+                <button 
+                type="button" 
+                className={`btn-close btn-close-${buttonColor}`}
+                aria-label="Close"
+                onClick={() => handleRemoveFavorite(breed)}
+                >
+                  
+                </button>
+              </li>
+            ))}
+          </ul>
+                    </Text>
                   </HStack>
                 </Box>
               </Flex>

@@ -7,12 +7,17 @@ class AuthService {
     console.log("Decoding token:", token);
     return token ? decode(token) : null;
   }
-
+  
   loggedIn() {
     const token = this.getToken();
-    console.log("Checking token:", token);
+    if (token) {
+      console.log("Checking token:", token);
+    } else {
+      console.log("No token found.");
+    }
     return token && !this.isTokenExpired(token) ? true : false;
   }
+  
 
   isTokenExpired(token) {
     console.log("Decoding token:", token);

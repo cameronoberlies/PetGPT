@@ -1,15 +1,18 @@
 // Importing React, Router links, and Users
 import React, { useState } from "react";
-import { Link, RouterLink } from "react-router-dom";
+import { Link, RouterLink, useNavigate} from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
-import '../test.css';
+import "../test.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Auth from "../utils/auth";
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,8 +32,28 @@ const Login = (props) => {
       });
 
       Auth.login(data.login.token);
+
+      toast.success("Login successful!", {
+        position: "top-center",
+        autoClose: 5000, // Close the toast after 5 seconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      navigate('/');
     } catch (e) {
       console.error(e);
+      toast.error("Login failed. Please check your credentials.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
 
     setFormState({
@@ -40,43 +63,44 @@ const Login = (props) => {
   };
   return (
     <>
-       <div
-       className="login-container"
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
+      <ToastContainer />
+      <div
+        className="login-container"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
         {/* Pills content */}
-      <div className="tab-content">
-        <div
-          className="tab-pane fade show active"
-          id="pills-login"
-          role="tabpanel"
-          aria-labelledby="tab-login"
-        >
-          <div className="form-box">
-            {data ? (
+        <div className="tab-content">
+          <div
+            className="tab-pane fade show active"
+            id="pills-login"
+            role="tabpanel"
+            aria-labelledby="tab-login"
+          >
+            <div className="form-box">
+              {/* {data ? (
               <p>
                 Success! You may now start{" "}
-                <Link to="/test">the test.</Link>
+                <Link to="/home">the test.</Link>
               </p>
-            ) : (
-              <form onSubmit={handleFormSubmit}>
+            ) : ( */}
+              <form onSubmit={handleFormSubmit} to="/">
                 {/* Email input */}
                 <div className="form-outline mb-4 small-input">
-                  <input 
-                   type="email"
-                   id="loginName" 
-                   className="form-control"
-                   name="email"
-                   value={formState.email}
-                   onChange={handleChange}
-                    />
+                  <input
+                    type="email"
+                    id="loginName"
+                    className="form-control"
+                    name="email"
+                    value={formState.email}
+                    onChange={handleChange}
+                  />
                   <label className="form-label" htmlFor="loginName">
-                    Email 
+                    Email
                   </label>
                 </div>
 
@@ -97,9 +121,7 @@ const Login = (props) => {
 
                 {/* 2 column grid layout */}
                 <div className="row mb-4">
-                  <div className="col-md-6 d-flex justify-content-center">
-                   
-                  </div>
+                  <div className="col-md-6 d-flex justify-content-center"></div>
 
                   <div>
                     {/* Simple link */}
@@ -111,9 +133,9 @@ const Login = (props) => {
                 <button
                   type="submit"
                   className="btn btn-primary btn-block mb-4 small-input"
-                  
+                  onClick={handleFormSubmit}
                 >
-                  < a href="/test">Sign in</a> 
+                  Login
                 </button>
 
                 {/* Register buttons */}
@@ -123,18 +145,18 @@ const Login = (props) => {
                   </p>
                 </div>
               </form>
-            )}
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
+              {/* )} */}
+              {error && (
+                <div className="my-3 p-3 bg-danger text-white">
+                  {error.message}
+                </div>
+              )}
+            </div>
           </div>
+          {/* ... */}
         </div>
-        {/* ... */}
+        {/* Pills content */}
       </div>
-      {/* Pills content */}
-        </div>
     </>
   );
 };
